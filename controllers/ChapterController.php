@@ -40,7 +40,7 @@ class ChapterController
         $chapter = $this->getChapter($id);
 
         if ($chapter) {
-            include 'view/chapter.php'; // Charge la vue pour le chapitre
+            require 'views/chapter_view.php'; // Charge la vue pour le chapitre
         } else {
             // Si le chapitre n'existe pas, redirige vers un chapitre par défaut ou affiche une erreur
             header('HTTP/1.0 404 Not Found');
@@ -57,4 +57,12 @@ class ChapterController
         }
         return null; // Chapitre non trouvé
     }
+
+
+
+    public function index(){
+        require "./views/404.php";
+    }
 }
+
+
