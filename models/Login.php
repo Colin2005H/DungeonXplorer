@@ -15,10 +15,10 @@ class Login
     public static function login($username, $password): void
     {
         require_once '../base/Database.php';
-        $query = $db->query("SELECT count(*) FROM  WHERE user_pseudo = {$username}; and user_password = {$password}");
-        var_dump($query);
+        $res = $base->request("SELECT count(*) as connection FROM User WHERE user_pseudo = '{$username}' and user_password = '{$password}'");
+        print_r($res[0]['connection']);
+    }
+}
 
-    }
-    }
-    Login::login($_POST["username"], $_POST["password"]);
-    echo"coucou";
+    Login::login($_POST['username'], $_POST['password']);
+    

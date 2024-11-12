@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="./views/styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,11 +18,11 @@
 
 <body>
     <header>
-        <img id = "logo" src="images/Logo.png" alt="Dunjeon Xplorer logo" />
-        <h1>Welcome to Dunjeon Xplorer</h1>
+        <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo" />
+        <h1>Welcome to Dungeon Xplorer</h1>
     </header>
     <div class="connection_card">
-        <form action="../models/Login.php" method="post">
+        <form action="./models/Login.php" method="post">
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
