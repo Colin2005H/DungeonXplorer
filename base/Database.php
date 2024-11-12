@@ -3,7 +3,7 @@
 // core/Database.php
 
 // Chemin vers le fichier .env
-$envFile = __DIR__ . './.env';
+$envFile = "../base/.env";
 
 // Vérification de l'existence du fichier .env
 if (!file_exists($envFile)) {
@@ -18,6 +18,7 @@ $dbHost = $env['DB_HOST'];
 $dbName = $env['DB_NAME'];
 $dbUser = $env['DB_USER'];
 $dbPassword = $env['DB_PASSWORD'];
+$db;
 
 try {
     // Connexion à la base de données
