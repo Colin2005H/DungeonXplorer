@@ -1,0 +1,61 @@
+body{
+    background-color: #1A1A1A;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    background-color: #2E2E2E;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo{
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+h1{
+    font-family: "Pirata One", system-ui;
+    font-size: 3em;
+    color: #E5E5E5;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+.connection_card{
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5em;
+    background-color: #2E2E2E;
+    color: #BFBFBF;
+    width: 30%;
+    height: 50%;
+    padding: 30px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form_connect{
+    padding: 20px;
+    
+}
+
+#login{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #C4975E;
+}
+
+
