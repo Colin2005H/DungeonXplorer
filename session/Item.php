@@ -17,7 +17,7 @@ class Item {
         $this->quantity = 1;
     }
 
-    public function getTotalWeight(){
+    public function getTotalWeight():Float{
         return $this->quantity * $this->weight;
     }
 
