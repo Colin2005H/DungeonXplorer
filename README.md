@@ -7,3 +7,5 @@ Fonctionnalités possible :
 //TODO
 
 -Modifier type (Weapon.bonus_strength) varchar => float/int
+
+-Méthode pour ajouter/supprimer des objet de l'inventaire
