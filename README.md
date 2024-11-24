@@ -11,3 +11,5 @@ Fonctionnalités possible :
 -Méthode pour ajouter/supprimer des objet de l'inventaire
 
 -Modifier inventaire pour que la clé primaire soit la combinaisson hero + item
+
+-Modifier chapitre pour que la clé primaire soit la combinaisson id + ad_id
