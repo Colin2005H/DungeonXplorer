@@ -1,5 +1,9 @@
 <?php
 
+require_once '../session/Item.php';
+require_once '../session/Armor.php';
+require_once '../session/Weapon.php';
+
 class Inventory{
 
     public $items;
@@ -22,8 +26,29 @@ class Inventory{
         }
         unser($item);
 
-        $this->items[$this->items.count()] = $item;
+        $this->items[] = $item;
         return 1;
+    }
+
+    public function getTotalWeight():Float{
+        $sum = 0;
+
+        foreach($this->items as &$item){
+            $sum += $item->getTotalWeight();
+        }
+
+        foreach($this->armors as &$armor){
+            $sum += $armor->getTotalWeight();
+        }
+
+        foreach($this->weapons as &$weapon){
+            $sum += $weapon->getTotalWeight();
+        }
+        
+        unser($item);
+        unser($armor);
+        unser($weapon);
+        return $sum;
     }
 
 }
