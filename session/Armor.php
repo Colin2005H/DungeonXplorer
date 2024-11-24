@@ -16,7 +16,7 @@ class Armor extends Item{
         $this->initiativePenalty = $initiativePenalty;
     }
 
-    public static function getArmor($id):Item{
+    public static function getArmor($id):Armor{
         $armorInfo = $GLOBALS["base"]->request("SELECT * FROM Armor WHERE id = {$id}")[0];
         $itemInfo = $GLOBALS["base"]->request("SELECT * FROM Items WHERE id = {$armorInfo["item_id"]}")[0];
         return new Weapon($itemInfo["id"], $itemInfo["name"], $itemInfo["description"], $itemInfo["weight"], $id, $armorInfo["amt_id"], $armorInfo["am_point"], $armorInfo["initiative_penalty"]);
