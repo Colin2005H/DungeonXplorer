@@ -41,5 +41,5 @@ class Base{
     }
 }
 
-$base = new Base();
+$GLOBALS["base"] = new Base();
 
