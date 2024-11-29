@@ -26,10 +26,12 @@ class Monster
     }
 
     static public function getMonster($id):Monster{
-        $monsterInfo = $GLOBALS["base"]->request("SELECT * FROM Monster WHERE id = {$id}");
-
-        return new Monster($id, $monsterInfo["name"], $monsterInfo["pv"], $monsterInfo["mana"], $monsterInfo["initiative"], $monsterInfo["streangth"], $monsterInfo["attack"], $monsterInfo["loot_id"], $monsterInfo["xp"]);
+        require_once './base/Database.php';
+        $monsterInfo = $GLOBALS["base"]->request("SELECT * FROM Monster WHERE id = {$id}")[0];
+        return new Monster($id, $monsterInfo["name"], $monsterInfo["pv"], $monsterInfo["mana"], $monsterInfo["initiative"], $monsterInfo["strength"], $monsterInfo["attack"], $monsterInfo["loot_id"], $monsterInfo["xp"]);
+        
     }
+
 
     
 }

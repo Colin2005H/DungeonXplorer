@@ -1,6 +1,6 @@
 <?php
 
-require_once '../session/Inventory.php';
+require_once 'session/Inventory.php';
 
 class Hero{
 

@@ -74,6 +74,7 @@ $router = new Router('DungeonXplorer');
 $router->addRoute('', 'HomeController@index'); // Pour la racine
 $router->addRoute('chapter', 'ChapterController@index'); // Pour afficher un chapitre
 $router->addRoute('chapter/{id}', 'ChapterController@show'); // Pour afficher un chapitre par ID
+$router->addRoute('fight', 'FightController@show'); // Pour afficher un combat
 
 
 // Appel de la méthode route

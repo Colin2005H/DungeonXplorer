@@ -22,6 +22,7 @@ class Item {
     }
 
     public static function getItem($id):Item{
+        require_once './base/Database.php';
         $itemInfo = $GLOBALS["base"]->request("SELECT * FROM Items WHERE id = {$id}")[0];
         return new Item($id, $itemInfo["name"], $itemInfo["description"], $itemInfo["weight"]);
     }

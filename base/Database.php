@@ -7,21 +7,24 @@ class Base{
     public function __construct()
     {
         // Chemin vers le fichier .env
-        $envFile = "../base/.env";
+        //$envFile = "../base/.env";
 
         // Vérification de l'existence du fichier .env
-        if (!file_exists($envFile)) {
+       /* if (!file_exists($envFile)) {
+            if (!file_exists($envFile)) {
+                $envFile = "/.env";
+            }
             die("Le fichier .env n'existe pas.");
-        }
+        }*/
 
         // Lecture du fichier .env et récupération des variables d'environnement
-        $env = parse_ini_file($envFile);
+       // $env = parse_ini_file($envFile);
 
         // Récupération des variables d'environnement
-        $dbHost = $env['DB_HOST'];
-        $dbName = $env['DB_NAME'];
-        $dbUser = $env['DB_USER'];
-        $dbPassword = $env['DB_PASSWORD'];
+        $dbHost = "mysql-etu.unicaen.fr";
+        $dbName = "legoupi231_0";
+        $dbUser = "legoupi231";
+        $dbPassword = "rahgho1os0ieDeix";
 
         try {
             // Connexion à la base de données
