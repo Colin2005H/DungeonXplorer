@@ -77,8 +77,8 @@ $router->addRoute('chapter/{id}', 'ChapterController@show'); // Pour afficher un
 $router->addRoute('login', 'UserController@login'); // Pour afficher le formulaire de connexion
 $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
 $router->addRoute('login ', 'UserController@testLogin'); // Try logging in
-
 $router->addRoute('home', 'HomeController@index'); // Pour la racine
+$router->addRoute('fight', 'FightController@show'); // Pour afficher un combat
 
 
 

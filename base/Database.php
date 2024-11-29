@@ -5,20 +5,7 @@ class Base{
     public $db;
 
     public function __construct()
-    {
-        // Chemin vers le fichier .env
-        /*
-        $envFile = "../base/.env";
-
-        // Vérification de l'existence du fichier .env
-        if (!file_exists($envFile)) {
-            die("Le fichier .env n'existe pas.");
-        }
-
-        // Lecture du fichier .env et récupération des variables d'environnement
-        $env = parse_ini_file($envFile);
-        */
-
+  }
         // Récupération des variables d'environnement
         $dbHost = "mysql-etu.unicaen.fr";
         $dbName = "legoupi231_0";
