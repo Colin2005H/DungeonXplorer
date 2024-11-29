@@ -18,11 +18,17 @@
 
 <body>
     <header>
-        <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo" />
+        <a  href="home">
+        <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
+        </a>
         <h1>Welcome to Dungeon Xplorer</h1>
     </header>
     <div class="connection_card">
-        <form action="./models/Login.php" method="post">
+        <form action="" method="post">
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -32,7 +38,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div>
-                <button id="login" type="submit">Login</button>
+                <button id="login" type="submit">S'inscrire</button>
             </div>
         </form>
     </div>

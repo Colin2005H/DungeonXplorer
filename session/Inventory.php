@@ -1,8 +1,8 @@
 <?php
 
-require_once '../session/Item.php';
-require_once '../session/Armor.php';
-require_once '../session/Weapon.php';
+require_once 'session/Item.php';
+require_once 'session/Armor.php';
+require_once 'session/Weapon.php';
 
 class Inventory{
 
