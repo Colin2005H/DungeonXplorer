@@ -9,6 +9,11 @@ class UserController {
         
     }
 
+    public function Admin() {
+        require_once 'views/adminPage.php';
+        
+    }
+
     public function testLogin(){
         require_once './base/Database.php';
         print_r($_POST["username"]);
@@ -20,7 +25,7 @@ class UserController {
         }else{
             #connection failed
             require_once 'views/signin.php';
-            
+
 
         }
     }
