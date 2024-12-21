@@ -79,7 +79,11 @@ $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formul
 $router->addRoute('login ', 'UserController@testLogin'); // Try logging in
 
 $router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
-$router->addRoute('chapter/{id}/{id}', 'ChapterController@showChapter');
+//TODO remove params to the route and use $_SESSION to get current chapter instead
+$router->addRoute('chapter/{id}/{id}', 'ChapterController@showChapter');// Afficher un chapitre
+//USE ONLY when above is fixed
+$router->addRoute('nextchapter/{id}', 'ChapterController@nextChapter');// Pour passer au chapitre suivant choisi
+
 
 $router->addRoute('fight', 'FightController@show'); // Pour afficher un combat
 

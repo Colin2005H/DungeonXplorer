@@ -1,7 +1,5 @@
 <?php
 
-// controllers/ChapterController.php
-
 require_once './models/Chapter.php';
 require_once './models/Choice.php';
 
@@ -10,16 +8,14 @@ class ChapterController
     public $chapter;
     public $choices = [];
 
-
     public function __construct(){}
-
 
 
     public function showChapter($adventureId, $chapterId){
         
-        //TODO test if the player can access this chapter else redirect him
+        //TODO test if the player can access a chapter else redirect him
 
-        $this->chapter = Chapter::getChapter($adventureId, $chapterId);
+        $this->chapter = Chapter::getChapter($adventureId, $chapterId);//Change params to use $_SESSION insted after checking if possible  
         $this->choices = Choice::getAllChoices($this->chapter);
 
         require_once './views/chapter.php';
@@ -46,7 +42,20 @@ class ChapterController
         return;
     }
 
-    
+    //use when showChapter as no longer params
+    public function nextChapter($nextChapterId){
+        if(isset($_SESSION['adventure']) && !isset($_SESSION['chapter'])){
+
+            $_SESSION['chapter'] = $nextChapterId;
+            //$this->showChapter()   
+
+        }else{
+
+            //TODO redirect toward /home
+        }
+
+        return;
+    }
 
 }
 
