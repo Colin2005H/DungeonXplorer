@@ -14,21 +14,39 @@ class ChapterController
     public function __construct(){}
 
 
-    //TODO
+
+    public function showChapter($adventureId, $chapterId){
+        
+        //TODO test if the player can access this chapter else redirect him
+
+        $this->chapter = Chapter::getChapter($adventureId, $chapterId);
+        $this->choices = Choice::getAllChoices($this->chapter);
+
+        require_once './views/chapter.php';
+        return;
+    }
+
+
+    //Allow to start an adventure from the start
+    //(May not be usefull because this could be done else where)
     public function startAdventure($id){
 
-        require_once './base/Database.php';
+        require_once './session/sessionStorage.php';
+
+        if(!isset($_SESSION['adventure']) || !isset($_SESSION['chapter'])){
+            
+            require_once './base/Database.php';
+            
+            $_SESSION['adventure'] = $id;
+            $_SESSION['chapter'] = $GLOBALS['base']->request("SELECT * FROM Adventure WHERE ad_id = {$id}")[0]['ad_first_chapter'];
+        }
+
+        $this->showChapter($_SESSION['adventure'], $_SESSION['chapter']);
         
-        require_once './views/chapter.php';
+        return;
     }
 
-    public function goThrowChapter($adventureId, $chapterId){
-        
-        //$this->chapter = new Chapter($adventureId, $chapterId);
-        //$this->choices = Choice::getAllChoices($this->chapter);
-
-        require_once './views/chapter.php';
-    }
+    
 
 }
 

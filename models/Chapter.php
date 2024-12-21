@@ -20,7 +20,7 @@ class Chapter{
     }
 
     public static function getChapter($adventureId, $id):Chapter{
-        require_once '../base/Database.php';
+        require_once './base/Database.php';
         $chapterInfo = $GLOBALS['base']->request("SELECT * FROM Chapter WHERE id = {$id} AND ad_id = {$adventureId}")[0];
         return new Chapter($chapterInfo['id'], $chapterInfo['ad_id'], $chapterInfo['content'], $chapterInfo['image'], $chapterInfo['treasure_id']);
     }

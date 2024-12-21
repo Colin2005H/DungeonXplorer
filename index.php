@@ -79,7 +79,7 @@ $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formul
 $router->addRoute('login ', 'UserController@testLogin'); // Try logging in
 
 $router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
-$router->addRoute('chapter/{id}/{id}', 'ChapterController@goThrowChapter');
+$router->addRoute('chapter/{id}/{id}', 'ChapterController@showChapter');
 
 $router->addRoute('fight', 'FightController@show'); // Pour afficher un combat
 
