@@ -11,9 +11,10 @@ class ChapterController
     public function __construct(){}
 
 
+    //display the current chapter
     public function showChapter($adventureId, $chapterId){
         
-        //TODO test if the player can access a chapter else redirect him
+        //TODO test if the player can access a chapter with SESSION else redirect him
 
         $this->chapter = Chapter::getChapter($adventureId, $chapterId);//Change params to use $_SESSION insted after checking if possible  
         $this->choices = Choice::getAllChoices($this->chapter);
@@ -43,6 +44,7 @@ class ChapterController
     }
 
     //use when showChapter as no longer params
+    //change session chapter to one of the possible next one
     public function nextChapter($nextChapterId){
         if(isset($_SESSION['adventure']) && !isset($_SESSION['chapter'])){
 
