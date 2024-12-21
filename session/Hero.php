@@ -1,6 +1,6 @@
 <?php
 
-require_once 'session/Inventory.php';
+require_once 'sessionStorage.php';
 
 class Hero{
 
@@ -65,4 +65,36 @@ class Hero{
         }
         return $sum;
     }
+
+
+    public static function getAllHeroes(): array {
+        //récupère tous les héros de la base de données
+        $heroesInfo = $GLOBALS["base"]->request("SELECT * FROM Hero");
+        $heroes = [];
+
+       
+        foreach ($heroesInfo as $heroInfo) {
+            $heroes[] = new Hero(
+                $heroInfo["id"],
+                $heroInfo["name"],
+                $heroInfo["class_id"],
+                $heroInfo["pv"],
+                $heroInfo["mana"],
+                $heroInfo["strength"],
+                $heroInfo["initiative"],
+                $heroInfo["shield"],
+                $heroInfo["spell_list"],
+                $heroInfo["xp"],
+                $heroInfo["current_level"],
+                $heroInfo["armor_id"],
+                $heroInfo["primary_wp_id"],
+                $heroInfo["secondary_wp_id"],
+                $heroInfo["weight_limit"],
+                $heroInfo["qte_item_limit"]
+            );
+        }
+        return $heroes;
+    }
+
+    
 }
