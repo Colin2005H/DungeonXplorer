@@ -68,6 +68,6 @@ class Hero{
 
     public function getClass():String{
         require_once './base/Database.php';
-        return $GLOBALS["base"]->request("SELECT c.name FROM Class c  WHERE id = {$class_id}")[0];
+        return strtoupper($GLOBALS["base"]->request("SELECT c.name FROM Class c  WHERE id = {$class_id}")[0]);
     }
 }

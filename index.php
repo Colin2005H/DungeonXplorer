@@ -78,7 +78,7 @@ $router->addRoute('login', 'UserController@login'); // Pour afficher le formulai
 $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
 $router->addRoute('login ', 'UserController@testLogin'); // Try logging in
 $router->addRoute('home', 'HomeController@index'); // Pour la racine
-$router->addRoute('fight', 'FightController@show'); // Pour afficher un combat
+$router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un combat
 
 
 

@@ -2,29 +2,33 @@
 require_once 'session/monster.php';
 class FightController {
 
-    private $heros;
+    private $hero;
     private $monster;
-    private $hasHerosPlayed;
-    private $hasMonsterPlayed;
     
 
     public function __construct(){
-        $this->monster = Monster::getMonster(0);
+        if(isset($_SESSION["hero"]) && isset($_SESSION["monster"])){
+            $hero = $_SESSION["hero"];
+            $monster = $_SESSION["monster"];
+        }else{
+            $this->monster = Monster::getMonster(0);
+        }
+        
 
     }
 
     public function calculateInitiative(){
         $initiativeMonster =rand(1,6) + $monster->initiative;
-        $initiativeHeros =  rand(1,6) +$heros->initiative;
+        $initiativeHero =  rand(1,6) +$hero->initiative -$hero->armor->initiativePenalty;
 
-        if($initiativeMonster > $initiativeHeros){
+        if($initiativeMonster > $initiativeHero){
             return $monster;
         }
-        elseif($initiativeMonster < $initiativeHeros){
-            return $heros;
+        elseif($initiativeMonster < $initiativeHero){
+            return $hero;
         }
-        elseif($initiativeMonster == $initiativeHeros && strtoupper($heros->getClass()) == "VOLEUR" ){
-            return $heros;
+        elseif($initiativeMonster == $initiativeHero && $hero->getClass()) == "VOLEUR" {
+            return $hero;
         }
         else{
             return $monster;
@@ -32,41 +36,70 @@ class FightController {
         
     }
 
-    public function fightRound(){
-        if(!isset($hasHerosPlayed) && !isset($hasMonsterPlayed)){
+    public function fightRound(){ //manage the fight
+        if(!isset($_SESSION["hasHeroPlayed"]) && !isset($_SESSION["hasMonsterPlayed"])){
             $characterThatMustPlay = calculateInitiative();
 
         }
-        elseif(!isset($hasHerosPlayed)){
+        elseif(!isset($_SESSION["hasHeroPlayed"])){
             $characterThatMustPlay = $monster;
         }
-        elseif(!isset($hasMonsterPlayed)){
-            $characterThatMustPlay = $heros;
+        elseif(!isset($_SESSION["hasMonsterPlayed"])){
+            $characterThatMustPlay = $hero;
         }
         else{
-            $characterThatMustPlay = null;
+            unset($_SESSION["hasHeroPlayed"]);
+            unset($_SESSION["hasMonsterPlayed"]);
+            fightRound();
         }
-        if(isset($characterThatMustPlay->class_id)){// true if it's a heros
-            herosTurn();
+        if(isset($characterThatMustPlay->class_id)){// true if it's a hero
+            heroTurn();
         }else{
             monsterTurn();
         }
 
     }
 
-    public function herosTurn(){
-
+    public function heroTurn(){
+        if(!isset($_POST))show();
+        else{
+            if($_POST["actionChoice"] == "physical" ){
+                $damage = rand(1,6) + $hero->strength
+                if($hero->getClass() == "VOLEUR"){
+                    $damage += $hero->primary_wp->bonusStrength + $hero->secondary_wp->bonusStrength
+                }else{
+                    if($_POST["weaponSelector"] == "primary" ){
+                        $damage += $hero->primary_wp->bonusStrength;
+                    }else{
+                        $damage += $hero->secondary_wp->bonusStrength;
+                    }
+                }
+                $defense = rand(1,6) + (int)($monster->strength/2);
+                $monster->pv -= max(0,$damage-$defense);
+                if($monster->pv < 0)$monster->pv = 0;
+            }
+        }
+        $_SESSION["hasHeroPlayed"] = true;
+        show()
     }
 
     public function monsterTurn(){
         $damages = rand(1,6) + $monster->strength;
-        
+        if($hero->getClass() == "VOLEUR"){
+            $defense = rand(1,6) + (int)($hero->initiative/2) + $hero->armor->amPoint;
+        }else{
+            $defense = rand(1,6) + (int)($hero->strength/2) + $hero->armor->amPoint;//Todo: shield
+        }
+        $hero->pv -= max(0, $damages - $defense )
+        if($hero->pv < 0)$hero->pv = 0;
+        $_SESSION["hasMonsterPlayed"] = true;
+        show()
 
     }
 
     public function show() {
         $monster = $this->monster;
-        if($monster){
+        $hero = $this->hero;
         require_once 'base/Database.php';
         require_once 'session/sessionStorage.php';
         require_once 'views/fight.php';
