@@ -25,7 +25,7 @@
         <h1>Welcome to Dungeon Xplorer</h1>
     </header>
     <div class="connection_card">
-        <form action="login " method="post">
+        <form action="testlogin" method="post">
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
