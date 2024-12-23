@@ -24,10 +24,16 @@ class Base{
     }
         
     public function request($requestString){
-        $res = $this->db->prepare($requestString);
-        $res->execute();
-        return $res->fetchAll();
+        try {
+            $res = $this->db->prepare($requestString);
+            $res->execute();
+            return $res->fetchAll();
+        } catch (PDOException $e) {
+            echo "Erreur SQL : " . $e->getMessage();
+            exit;
+        }
     }
+    
 }
 
 $GLOBALS["base"] = new Base();

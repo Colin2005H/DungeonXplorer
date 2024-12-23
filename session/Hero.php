@@ -2,6 +2,7 @@
 
 require_once 'Armor.php';
 require_once 'Weapon.php';
+require_once '../base/Database.php';
 
 class Hero{
 
@@ -33,7 +34,7 @@ class Hero{
     
     
     
-    public function __construct($id, $name, $class_id, $pv, $mana, $strength, $initiative, $shield, $spell_list, $xp, $current_level, $armor_id, $primary_wp_id, $secondary_wp_id, $weight_limit, $qte_item_limit){
+    public function __construct($id, $name, $class_id, $pv, $mana, $strength, $initiative, $shield, $xp, $current_level, $primary_wp_id, $secondary_wp_id, $weight_limit, $qte_item_limit){
         $this->id = $id;
         $this->name = $name;
         $this->class_id = $class_id;
@@ -42,10 +43,10 @@ class Hero{
         $this->strength = $strength;
         $this->initiative = $initiative;
         $this->shield = $shield;
-        $this->spell_list = $spell_list;
+        //$this->spell_list = $spell_list;
         $this->xp = $xp;
         $this->current_level = $current_level;
-        $this->armor = Armor::getArmor($armor_id);
+        //$this->armor = Armor::getArmor($armor_id);
         $this->primary_wp = Weapon::getWeapon($primary_wp_id);
         $this->secondary_wp = Weapon::getWeapon($secondary_wp_id);
         $this->weight_limit = $weight_limit;
@@ -72,6 +73,7 @@ class Hero{
         //récupère tous les héros de la base de données
         $heroesInfo = $GLOBALS["base"]->request("SELECT * FROM Hero");
         $heroes = [];
+        
 
        
         foreach ($heroesInfo as $heroInfo) {
@@ -84,10 +86,10 @@ class Hero{
                 $heroInfo["strength"],
                 $heroInfo["initiative"],
                 $heroInfo["shield"],
-                $heroInfo["spell_list"],
+                //$heroInfo["spell_list"],
                 $heroInfo["xp"],
                 $heroInfo["current_level"],
-                $heroInfo["armor_id"],
+                //$heroInfo["armor_id"],
                 $heroInfo["primary_wp_id"],
                 $heroInfo["secondary_wp_id"],
                 $heroInfo["weight_limit"],

@@ -89,5 +89,8 @@ $router->addRoute('fight', 'FightController@show'); // Pour afficher un combat
 
 
 
+
+
+
 // Appel de la méthode route
 $router->route(trim($_SERVER['REQUEST_URI'], '/'));
