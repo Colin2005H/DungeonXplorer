@@ -7,9 +7,10 @@
     <title>DungeonXplorer</title>
 </head>
 <body>
+    <p> degats <?php echo $this->effectiveDamage ?></p>
     <div id="heroInfo">
-        <h4><?php echo "'".$hero->name."'" ?> </h4>
-        <p>Classe: <?php echo "'".$hero->getClass()."'" ?> </p>
+        <h4><?php echo $hero->name ?> </h4>
+        <p>Classe:  </p>
         <p>PV: <?php echo "'".$hero->pv."'" ?> </p>
         <p> Mana: <?php echo "'".$hero->mana."'" ?> </p>
         <p>Force:<?php echo "'".$hero->strength."'" ?> </p>
@@ -27,14 +28,14 @@
 
     <form action="fight" method=post>
         <div id = "choice">
-            <input type="radio" id="physical " name="actionChoice" value="physical" checked>
-            <label for="physical"> Attaque physique </label>
+            <input type="radio" id="physicalButton " name="actionChoice" value="physical" checked>
+            <label for="physicalButton"> Attaque physique </label>
 
-            <input type="radio" id="magical " name="actionChoice" value="magical" >
-            <label for="magical"> Attaque magique </label>
+            <input type="radio" id="magicalButton " name="actionChoice" value="magical" >
+            <label for="magicalButton"> Attaque magique </label>
 
-            <input type="radio" id="useObject" name="actionChoice" value="useObject" >
-            <label for="useObject"> Utiliser un objet </label>
+            <input type="radio" id="useObjectButton" name="actionChoice" value="useObject" >
+            <label for="useObjectButton"> Utiliser un objet </label>
         </div>
 
 
@@ -47,19 +48,11 @@
         </div>
 
         <div id="magicalChoice">
-            <label for="spellSelector">Choix du sort </label>
-            <select name="spellSelector" id="spellSelector">
-                <option value= <?php echo "'".$hero->primary_wp->name."'" ?>> princ.: <?php echo $hero->primary_wp->name ?> </option>
-                <option value = <?php echo "'".$hero->secondary_wp->name."'" ?>>secon.: <?php echo $hero->secondary_wp->name ?> </option>
-            </select>
+            <p> sort todo</p>
         </div>
 
         <div id="useObjectChoice">
-            <label for="spellSelector">Choix du sort </label>
-            <select name="spellSelector" id="spellSelector">
-                <option value= <?php echo "'".$hero->primary_wp->name."'" ?>> princ.: <?php echo $hero->primary_wp->name ?> </option>
-                <option value = <?php echo "'".$hero->secondary_wp->name."'" ?>>secon.: <?php echo $hero->secondary_wp->name ?> </option>
-            </select>
+            <p> objets todo</p>
         </div>
 
 
@@ -69,30 +62,29 @@
     
 </body>
 <script>
+    
+  
     let physicalChoice = document.getElementById("physicalChoice");
     let magicalChoice = document.getElementById("magicalChoice");
     let useObjectChoice = document.getElementById("useObjectChoice");
-    let physicalButton = document.getElementById("physical");
-    let magicalButton = document.getElementById("magical");
-    let useObjectButton = document.getElementById("useObject");
-        
-
-
-    physicalButton.addEventListener("click", ()=>{
+    let allButtons = document.querySelectorAll('input[name="actionChoice"]');
+    magicalChoice.style.display ="none";
+    useObjectChoice.style.display ="none";
+    allButtons[0].addEventListener("change", ()=>{
         magicalChoice.style.display ="none";
         useObjectChoice.style.display ="none";
-        physicalChoice.style.display =" block"
+        physicalChoice.style.display =" block";
 
     })
 
-    magicalButton.addEventListener("click", ()=>{
+    allButtons[1].addEventListener("change", ()=>{
         physicalChoice.style.display ="none";
         useObjectChoice.style.display ="none";
         magicalChoice.style.display =" block"
 
     })
 
-    useObjectChoice.addEventListener("click", ()=>{
+    allButtons[2].addEventListener("change", ()=>{
         magicalChoice.style.display ="none";
         physicalChoice.style.display ="none";
         useObjectChoice.style.display =" block"

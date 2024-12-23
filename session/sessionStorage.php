@@ -78,7 +78,7 @@ class Session{
 
         #hero last state
         $heroData = $base->request("SELECT * FROM Hero JOIN Quest ON Hero.id = Quest.hero_id JOIN Chapter ON Chapter.id = Quest.chapter_id WHERE Hero.id = {$heroID} AND ad_id = {$_SESSION["adventure"]}");
-
+        //$_SESSION["hero"] = new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], $heroData["spell_list"],$heroData["xp"],$heroData["current_level"],$heroData["armor_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
         #get inventory
         $items = [];
         $storedItems = $base->request("SELECT item_id, qte FROM Inventory WHERE item_id not in (SELECT item_id FROM Weapon) AND not in (SELECT item_id FROM Armor)");
