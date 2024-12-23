@@ -10,7 +10,7 @@ require_once 'session/Hero.php';
 #  
 #   "adventure" => int
 #
-#   "chapterID" => int
+#   "chapter" => int
 #
 #   "hero" => Hero{...}
 #   
@@ -38,18 +38,21 @@ class Session{
     static function saveData(){
         require_once '../base/Database.php';
         $base = $GLOBALS["base"];
+
+
         #update last chapter
-        $base->request("UPDATE Quest SET chapter_id = {$_SESSION["chapterID"]} WHERE hero_id = {$_SESSION["hero"]->id}");
+        $base->request("UPDATE Quest SET chapter_id = {$_SESSION["chapter"]} WHERE hero_id = {$_SESSION["hero"]->id}");
     
+
         #update last hero state
         $base->request("UPDATE Hero SET pv = {$_SESSION["hero"]->pv}, mana = {$_SESSION["hero"]->mana}, strength = {$_SESSION["hero"]->strength}, initiative = {$_SESSION["hero"]->initiative}, shield = {$_SESSION["hero"]->shield}, ar_id = {$_SESSION["hero"]->armor->id}, primary_wp_id = {$_SESSION["hero"]->primary_wp->id}, secondary_wp_id = {$_SESSION["hero"]->secondary_wp->id}, xp = {$_SESSION["hero"]->xp}, current_level = {$_SESSION["hero"]->current_level} WHERE id = {$_SESSION["hero"]->id}");
         //TODO store/update spell_list
+
 
         #update last inventory
         $base->request("DELETE FROM Inventory WHERE hero_id = {$_SESSION["hero"]->id}");
         $inventory = $_SESSION["inventory"];
 
-        
         foreach($inventory->items as &$item){
             $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$_SESSION["hero"]->id}, {$item->id}, {$item->quantity})");
         }
@@ -59,7 +62,6 @@ class Session{
         foreach($inventory->armors as &$armor){
             $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$_SESSION["hero"]->id}, {$armors->id}, {$armors->quantity})");
         }
-
         unset($item);
         unset($weapon);
         unset($armor);
@@ -71,7 +73,7 @@ class Session{
         require_once '../base/Database.php';
         $base = $GLOBALS["base"];
         #get last chapter
-        $_SESSION["chapterID"] = $base->request("SELECT chapter_id FROM Quest WHERE hero_id = {$heroID}");
+        $_SESSION["chapter"] = $base->request("SELECT chapter_id FROM Quest WHERE hero_id = {$heroID}");
 
         #get current adventure
         $_SESSION["adventure"] = $base->request("SELECT ad_id FROM Chapter WHERE id = {$_SESSION["chapterID"]}");

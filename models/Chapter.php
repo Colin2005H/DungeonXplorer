@@ -1,46 +1,27 @@
 <?php
 
-// models/Chapter.php
+class Chapter{
 
-class Chapter
-{
-    private $id;
-    private $title;
-    private $description;
-    private $image; 
-    private $choices;
+    public $id;
+    public $adventureId;
+    public $text;
+    public $image;
+    public $treasureId;
 
-    public function __construct($id, $title, $description, $image, $choices)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->description = $description;
-        $this->image = $image; 
-        $this->choices = $choices;
+
+    public function __construct($id, $adventureId, $text, $image, $treasureId){
+
+        $this->id =$id;
+        $this->adventurreId = $adventureId;
+        $this->text = $text;
+        $this->image = $image;
+        $this->treasureId = $treasureId;
+
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function getImage()
-    {
-        return $this->image; 
-    }
-
-    public function getChoices()
-    {
-        return $this->choices;
+    public static function getChapter($adventureId, $id):Chapter{
+        require_once './base/Database.php';
+        $chapterInfo = $GLOBALS['base']->request("SELECT * FROM Chapter WHERE id = {$id} AND ad_id = {$adventureId}")[0];
+        return new Chapter($chapterInfo['id'], $chapterInfo['ad_id'], $chapterInfo['content'], $chapterInfo['image'], $chapterInfo['treasure_id']);
     }
 }
