@@ -2,6 +2,7 @@
 
 session_start();
 
+
 require_once 'session/Inventory.php';
 require_once 'session/Hero.php';
 

@@ -1,6 +1,7 @@
 <?php
 
-require_once 'sessionStorage.php';
+require_once 'Armor.php';
+require_once 'Weapon.php';
 
 class Hero{
 
