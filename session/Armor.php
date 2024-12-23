@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Item.php';
+
 class Armor extends Item{
 
     public $id;
