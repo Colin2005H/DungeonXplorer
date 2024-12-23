@@ -5,6 +5,14 @@ class Base{
     public $db;
 
     public function __construct(){
+
+  
+        // Variables de connection
+        $dbHost = "dunjeonxplorer-dunjeonxplorer.g.aivencloud.com:27061";
+        $dbName = "DunjeonXplorer";
+        $dbUser = "avnadmin";
+        $dbPassword = "AVNS_yA4K7tJHMO3MqRheWWN";
+
         try {
             // Connexion à la base de données
             $this->db = new PDO('mysql:host=dunjeonxplorer-dunjeonxplorer.g.aivencloud.com:27061;dbname=DunjeonXplorer;charset=utf8', 'avnadmin', 'AVNS_yA4K7tJHMO3MqRheWWN');
