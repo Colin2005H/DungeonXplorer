@@ -7,14 +7,18 @@
     <title>DungeonXplorer</title>
 </head>
 <body>
-    
+    <div>
+        <p><?php echo $this->sentenceInitiative ?> </p>
+        <p><?php echo $this->sentenceHero ?> </p>
+        <p><?php echo $this->sentenceMonster ?> </p>
+    </div>
     <div id="heroInfo">
         <h4><?php echo $this->hero->name ?> </h4>
         <p>Classe: <?php echo $this->hero->getClass() ?>  </p>
         <p>PV: <?php echo $this->hero->pv ?> </p>
         <p> Mana: <?php echo $this->hero->mana ?> </p>
         <p>Force:<?php echo $this->hero->strength ?> </p>
-        <p>Initiative:<?php echo $this->hero->initiative ?> </p>
+        <p>Initiative:<?php echo $this->initiativeAfterReduce ?> </p>
 
     </div>
 
