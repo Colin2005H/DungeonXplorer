@@ -7,11 +7,7 @@
     <title>DungeonXplorer</title>
 </head>
 <body>
-    <p> monstre ? : <?php echo $mo ?></p>
-    <p> hero ?   <?php echo $he ?></p>
-    <p> sentence : <?php echo $this->sentence ?></p>
-    <p> degats monstre:  <?php echo $this->damMon ?></p>
-    <p> degats hero <?php echo $this->effectiveDamage ?></p>
+    
     <div id="heroInfo">
         <h4><?php echo $this->hero->name ?> </h4>
         <p>Classe: <?php echo $this->hero->getClass() ?>  </p>
