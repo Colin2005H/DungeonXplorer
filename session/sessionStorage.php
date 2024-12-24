@@ -39,6 +39,8 @@ class Session{
         require_once '../base/Database.php';
         $base = $GLOBALS["base"];
 
+        $base->request("UPDATE Quest SET chapter_id = {$_SESSION['chapter']}, adventure_id = {$_SESSION['adventure']} WHERE hero_id = {$_SESSION['heor']->id}");
+
 
         #update last chapter
         $base->request("UPDATE Quest SET chapter_id = {$_SESSION["chapter"]} WHERE hero_id = {$_SESSION["hero"]->id}");
@@ -72,11 +74,11 @@ class Session{
     static function loadData($heroID){
         require_once '../base/Database.php';
         $base = $GLOBALS["base"];
-        #get last chapter
-        $_SESSION["chapter"] = $base->request("SELECT chapter_id FROM Quest WHERE hero_id = {$heroID}");
 
-        #get current adventure
-        $_SESSION["adventure"] = $base->request("SELECT ad_id FROM Chapter WHERE id = {$_SESSION["chapterID"]}");
+        #get chapter/adventure
+        $quest = $base->request("SELECT * FROM Quest WHERE hero_id = {$heroID}")[0];
+        $_SESSION["chapter"] = $quest['chapter_id'];
+        $_SESSION["adventure"] = $quest['adventure_id'];
 
         #hero last state
         $heroData = $base->request("SELECT * FROM Hero JOIN Quest ON Hero.id = Quest.hero_id JOIN Chapter ON Chapter.id = Quest.chapter_id WHERE Hero.id = {$heroID} AND ad_id = {$_SESSION["adventure"]}");
