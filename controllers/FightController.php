@@ -20,7 +20,8 @@ class FightController {
             $this->hero = $_SESSION["hero"];
             $this->monster = $_SESSION["monster"];
         }else{
-            $this->createTestFight();
+            echo "monster or hero unloaded";
+            //$this->createTestFight(); //test function, uncomment to test
             
         }
         $this->sentenceHero = "";
@@ -145,7 +146,7 @@ class FightController {
         if($this->hero->pv <= 0){
             $this->sentenceEnd = "Vous êtes mort";
             unset($_SESSION["monster"]);
-            echo  $this->sentenceEnd;// echo here
+           // echo  $this->sentenceEnd;// echo here
             $_SESSION["hasHeroPlayed"] = false;
             $_SESSION["hasMonsterPlayed"] = false;
             return;
@@ -154,7 +155,7 @@ class FightController {
         elseif($this->monster->pv <= 0){
             $this->sentenceEnd = "Vous avez gagné";
             unset($_SESSION["monster"]);
-            echo $this->sentenceEnd; // echo here
+            //echo $this->sentenceEnd; // echo here
             $_SESSION["hasHeroPlayed"] = false;
             $_SESSION["hasMonsterPlayed"] = false;
             return;
