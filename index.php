@@ -79,6 +79,7 @@ $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formul
 $router->addRoute('login ', 'UserController@testLogin'); // Try logging in
 $router->addRoute('home', 'HomeController@index'); // Pour la racine
 $router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un combat
+$router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
 
 
 

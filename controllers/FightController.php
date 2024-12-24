@@ -1,6 +1,7 @@
 <?php
 require_once 'session/monster.php';
 require_once 'session/Hero.php';
+require_once 'session/sessionStorage.php';
 class FightController {
 
     private $hero;
@@ -8,14 +9,17 @@ class FightController {
     private $effectiveDamage;
     private $damMon;
     private $sentence;
+
     
 
     public function __construct(){
-        if(isset($_SESSION["hero"]) && isset($_SESSION["monster"]) && !isset($_SESSION["oui"])){
+        if(isset($_SESSION["hero"]) && isset($_SESSION["monster"])){
+            echo "normal";
             $this->hero = $_SESSION["hero"];
             $this->monster = $_SESSION["monster"];
-        }elseif(!isset($_SESSION["oui"])){
+        }else{
             require_once './base/Database.php';
+            echo "create";
             $_SESSION["monster"] = Monster::getMonster(0);
             $heroData = $GLOBALS["base"]->request("SELECT * FROM Hero where id= 0")[0];
             $_SESSION["hero"] = new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], null,$heroData["xp"],$heroData["current_level"],$heroData["am_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
@@ -26,22 +30,25 @@ class FightController {
             $this->monster = $_SESSION["monster"];
             $_SESSION["hasHeroPlayed"] = false;
             $_SESSION["hasMonsterPlayed"] = false;
-            $_SESSION["monster"]->initiative = 0;
-            $_SESSION["hero"]->strength = 0;
+            //$_SESSION["monster"]->initiative = 50;
+            $_SESSION["hero"]->strength = 1;
+            $_SESSION["monster"]->strength = 20;
             
         }
         $this->effectiveDamage = 0;
         $this->damMon = 0;
-        
+    }
 
-        
-
+    public function resetMonster(){
+        unset($this->monster);
+        unset($_SESSION["monster"]);
+        $this-> __construct();
     }
 
     public function calculateInitiative(){
         $initiativeMonster =rand(1,6) + $this->monster->initiative;
         $initiativeHero =  rand(1,6) +$this->hero->initiative -$this->hero->armor->initiativePenalty;
-
+        echo $initiativeMonster ." contre ".$initiativeHero;
         if($initiativeMonster > $initiativeHero){
             return $this->monster;
         }
@@ -71,13 +78,13 @@ class FightController {
             echo "c'est a personne de jouer \n";
 
         }
+        elseif($_SESSION["hasMonsterPlayed"] == true || isset($_POST["actionChoice"])){
+            $characterThatMustPlay = $this->hero;
+            echo "c'est au hero de jouer \n";
+        }
         elseif($_SESSION["hasHeroPlayed"] == true ){
             $characterThatMustPlay = $this->monster;
             echo "c'est au monstre de jouer \n";
-        }
-        elseif($_SESSION["hasMonsterPlayed"] == true || !isset($_POST["actionChoice"])){
-            $characterThatMustPlay = $this->hero;
-            echo "c'est au hero de jouer \n";
         }
         if(isset($characterThatMustPlay->class_id)){// true if it's a hero
             $this-> heroTurn();
@@ -93,6 +100,7 @@ class FightController {
         $_SESSION["hasHeroPlayed"] = true;
         if(isset($_POST["actionChoice"])){
             if($_POST["actionChoice"] == "physical" ){
+                echo "player traitement";
                 $damage = rand(1,6) + $this->hero->strength;
                 if($this->hero->getClass() == "VOLEUR"){
                     $damage += $this->hero->primary_wp->bonusStrength + $this->hero->secondary_wp->bonusStrength;
@@ -110,6 +118,7 @@ class FightController {
                 $this->updateData();
             }
         }else{
+            echo "player look";
             $this->showForPlayer();
         }
         
@@ -153,12 +162,17 @@ class FightController {
            
         }
         else{
-            $_SESSION["hero"]->pv = $this->hero->pv;
-            $_SESSION["monster"]->pv = $this->monster->pv;
+            $_SESSION["hero"] = $this->hero;
+            $_SESSION["monster"] = $this->monster;
             $mo = $_SESSION["hasMonsterPlayed"];
             $he = $_SESSION["hasHeroPlayed"];
         }
+        $this->secondTurnManager();
 
+        
+    }
+
+    public function secondTurnManager(){
         if($_SESSION["hasMonsterPlayed"] == true){
             if($_SESSION["hasHeroPlayed"] == true){
                 $this->fightRound();
