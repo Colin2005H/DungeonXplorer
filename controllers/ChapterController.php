@@ -8,56 +8,72 @@ class ChapterController
     public $chapter;
     public $choices = [];
 
-    public function __construct(){}
+    public function __construct(){
+        require_once 'session/sessionStorage.php';
+    }
 
 
     //display the current chapter
-    public function showChapter($adventureId, $chapterId){
-        
-        //TODO test if the player can access a chapter with SESSION else redirect him
+    public function showChapter(){
+    
+        if(isset($_SESSION['adventure']) && isset($_SESSION['chapter'])){
 
-        $this->chapter = Chapter::getChapter($adventureId, $chapterId);//Change params to use $_SESSION insted after checking if possible  
-        $this->choices = Choice::getAllChoices($this->chapter);
+            $this->chapter = Chapter::getChapter($_SESSION['adventure'], $_SESSION['chapter']);
+            $this->choices = Choice::getAllChoices($this->chapter);
 
-        require_once './views/chapter.php';
+            require_once './views/chapter.php';
+
+        }else{
+            
+            //User $_SESSION doesn't containe chapter or adventure inforfation
+            require_once './views/404.php';
+            echo 'User $_SESSION does not containe chapter or adventure information';
+
+        }
+
         return;
     }
 
 
     //Allow to start an adventure from the start
-    //(May not be usefull because this could be done else where)
-    public function startAdventure($id){
-
-        require_once './session/sessionStorage.php';
+    public function startAdventure($adventureId){
 
         if(!isset($_SESSION['adventure']) || !isset($_SESSION['chapter'])){
             
             require_once './base/Database.php';
             
-            $_SESSION['adventure'] = $id;
-            $_SESSION['chapter'] = $GLOBALS['base']->request("SELECT * FROM Adventure WHERE ad_id = {$id}")[0]['ad_first_chapter'];
+            $_SESSION['adventure'] = $adventureId;
+            $_SESSION['chapter'] = $GLOBALS['base']->request("SELECT * FROM Adventure WHERE ad_id = {$adventureId}")[0]['ad_first_chapter'];
+            
         }
-
-        $this->showChapter($_SESSION['adventure'], $_SESSION['chapter']);
         
+        header('Location: ../chapter');
+        exit();
         return;
     }
 
     //use when showChapter as no longer params
     //change session chapter to one of the possible next one
     public function nextChapter($nextChapterId){
-        if(isset($_SESSION['adventure']) && !isset($_SESSION['chapter'])){
+
+        if(isset($_SESSION['adventure']) && isset($_SESSION['chapter'])){
 
             $_SESSION['chapter'] = $nextChapterId;
-            //$this->showChapter()   
+            header('Location: ../chapter');
+            exit();
 
         }else{
 
-            //TODO redirect toward /home
+            //User $_SESSION doesn't containe chapter or adventure inforfation
+            require_once './views/404.php';
+            echo 'User $_SESSION does not containe chapter or adventure information';
+           
         }
 
         return;
     }
+
+
 
 }
 

@@ -13,16 +13,27 @@
     <p><?php echo $this->chapter->text; ?></p>
 
     <h2>Choisissez votre chemin:</h2>
-    
     <ul>
-        <?php foreach ($this->choices as $choice): ?>
-            <li>
-                <a href="<?php echo "nextchapter/" .$choise->nextChapter; ?>">
-                    <?php echo $choice->text; ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
+        <?php      
+            foreach ($this->choices as $choice){
+
+                $choicesList = "";
+                $choicesList .= "<li><a href='./nextchapter/";
+                $choicesList .= $choice->nextChapter;
+                $choicesList .= "'>";
+                $choicesList .= $choice->text;
+                $choicesList .= "</a></li>";
+                echo $choicesList;
+
+            }
+        ?>
     </ul>
+
+    
+
+    <a href="../">exit adventure</a>
+         
+
 
 
 </body>
