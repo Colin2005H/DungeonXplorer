@@ -1,8 +1,8 @@
 <?php
 
-require_once '../session/Item.php';
-require_once '../session/Armor.php';
-require_once '../session/Weapon.php';
+require_once 'session/Item.php';
+require_once 'session/Armor.php';
+require_once 'session/Weapon.php';
 
 class Inventory{
 
@@ -17,16 +17,16 @@ class Inventory{
     }
 
     
-    public function addItem($item): int{ //TODO test poids
+    public function addItem($newItem): int{ //TODO test poids
         foreach($this->items as &$item){
-            if($item->itemID == $id->itemID){
+            if($item->itemID == $newItem->itemID){
                 $item->itemQuantity += 1;
                 return 1;
             }
         }
-        unser($item);
+        unset($item);
 
-        $this->items[] = $item;
+        $this->items[] = $newItem;
         return 1;
     }
 
@@ -45,9 +45,9 @@ class Inventory{
             $sum += $weapon->getTotalWeight();
         }
         
-        unser($item);
-        unser($armor);
-        unser($weapon);
+        unset($item);
+        unset($armor);
+        unset($weapon);
         return $sum;
     }
 

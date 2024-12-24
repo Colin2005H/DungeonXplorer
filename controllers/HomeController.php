@@ -1,7 +1,9 @@
 <?php
 class HomeController {
     public function index() {
-        require_once 'views/home.php';
+        session_start();
+        session_destroy();
+        require_once 'views/homePage.php';
         
     }
 }
