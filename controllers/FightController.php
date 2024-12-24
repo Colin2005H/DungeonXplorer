@@ -6,21 +6,30 @@ class FightController {
     private $hero;
     private $monster;
     private $effectiveDamage;
-    private $sentense;
+    private $damMon;
+    private $sentence;
     
 
     public function __construct(){
-        if(isset($_SESSION["hero"]) && isset($_SESSION["monster"])){
+        if(isset($_SESSION["hero"]) && isset($_SESSION["monster"]) && !isset($_SESSION["oui"])){
             $this->hero = $_SESSION["hero"];
             $this->monster = $_SESSION["monster"];
-        }else{
+        }elseif(!isset($_SESSION["oui"])){
             require_once './base/Database.php';
             $_SESSION["monster"] = Monster::getMonster(0);
             $heroData = $GLOBALS["base"]->request("SELECT * FROM Hero where id= 0")[0];
             $_SESSION["hero"] = new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], null,$heroData["xp"],$heroData["current_level"],$heroData["am_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
             $this->hero =  $_SESSION["hero"];
             $this->monster = $_SESSION["monster"];
+            $_SESSION["hasHeroPlayed"] = false;
+            $_SESSION["hasMonsterPlayed"] = false;
+            $_SESSION["monster"]->initiative = 0;
+            $_SESSION["hero"]->strength = 0;
+            
         }
+        $this->effectiveDamage = 0;
+        $this->damMon = 0;
+        
 
         
 
@@ -46,20 +55,24 @@ class FightController {
     }
 
     public function fightRound(){ //manage the fight
-        if(!isset($_SESSION["hasHeroPlayed"]) && !isset($_SESSION["hasMonsterPlayed"])){
+        if($_SESSION["hasHeroPlayed"] == true && $_SESSION["hasMonsterPlayed"] == true){
+            $_SESSION["hasHeroPlayed"] = false;
+            $_SESSION["hasMonsterPlayed"] = false;
+        }
+        $this->hero = $_SESSION["hero"];
+        $this->monster = $_SESSION["monster"];
+        if($_SESSION["hasHeroPlayed"] == false && $_SESSION["hasMonsterPlayed"] == false){
+            echo "\n autre";
             $characterThatMustPlay = $this->calculateInitiative();
 
         }
-        elseif(!isset($_SESSION["hasHeroPlayed"])){
+        elseif($_SESSION["hasHeroPlayed"] == true || isset($_POST["actionChoice"])){
             $characterThatMustPlay = $this->monster;
+            echo "\n monstre";
         }
-        elseif(!isset($_SESSION["hasMonsterPlayed"])){
+        elseif($_SESSION["hasMonsterPlayed"] == true || !isset($_POST["actionChoice"])){
             $characterThatMustPlay = $this->hero;
-        }
-        else{
-            unset($_SESSION["hasHeroPlayed"]);
-            unset($_SESSION["hasMonsterPlayed"]);
-            $this->fightRound();
+            echo "\n hero";
         }
         if(isset($characterThatMustPlay->class_id)){// true if it's a hero
             $this-> heroTurn();
@@ -70,7 +83,7 @@ class FightController {
     }
 
     public function heroTurn(){
-        if(!isset($_POST["actionChoice"]))show();
+        if(!isset($_POST["actionChoice"])){$_SESSION["hasHeroPlayed"] = true;$this->show();}
         else{
             if($_POST["actionChoice"] == "physical" ){
                 $damage = rand(1,6) + $this->hero->strength;
@@ -85,8 +98,8 @@ class FightController {
                 }
                 $defense = rand(1,6) + (int)($this->monster->strength/2);
                 $this->effectiveDamage = max(0,$damage-$defense);
-                $_SESSION["monster"]->pv -= max(0,$damage-$defense);
-                if($_SESSION["monster"]->pv < 0)$_SESSION["monster"]->pv = 0;
+                $this->monster->pv -= max(0,$damage-$defense);
+                if($this->monster->pv < 0)$this->monster->pv = 0;
             }
         }
         $_SESSION["hasHeroPlayed"] = true;
@@ -100,34 +113,45 @@ class FightController {
         }else{
             $defense = rand(1,6) + (int)($this->hero->strength/2) + $this->hero->armor->amPoint;//Todo: shield
         }
-        $this->effectiveDamage = max(0,$damages-$defense);
-        $_SESSION["hero"]->pv -= max(0, $damages - $defense );
-        if( $_SESSION["hero"]->pv < 0) $_SESSION["hero"]->pv = 0;
+        $this->damMon = max(0,$damages-$defense);
+        $this->hero->pv -= max(0, $damages - $defense );
+        if( $this->hero->pv < 0) $this->hero->pv = 0;
         $_SESSION["hasMonsterPlayed"] = true;
         $this->show();
 
     }
 
     public function show() {
+        echo print_r( $_SESSION["hero"]);
+        echo print_r( $_SESSION["monster"]);
         if($this->hero->pv <= 0){
+            $this->sentence = "Vous êtes mort";
             unset($_SESSION["hero"]);
             unset($_SESSION["monster"]);
-           require_once 'views/404.php';
+            echo "dqdqd";
+            $_SESSION["oui"] = 1;
+           
         }
-        if($this->monster->pv <= 0){
+        elseif($this->monster->pv <= 0){
+            $this->sentence = "Vous avez gagné";
             unset($_SESSION["hero"]);
             unset($_SESSION["monster"]);
-           require_once 'views/homePage.php';
+            echo "aaaa";
+            $_SESSION["oui"] = 1;
+           
         }
-       $monster = $_SESSION["monster"];
-       $hero =  $_SESSION["hero"];
+        else{
+       $_SESSION["hero"]->pv = $this->monster->pv;
+       $_SESSION["monster"]->pv = $this->monster->pv;
+       $mo = $_SESSION["hasMonsterPlayed"];
+       $he = $_SESSION["hasHeroPlayed"];
        //$_SESSION["monster"] = $monster;
       // $_SESSION["hero"] = $hero;
 
         require_once 'base/Database.php';
         require_once 'session/sessionStorage.php';
         require_once 'views/fight.php';
-        
+        }
         
         
         

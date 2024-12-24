@@ -7,23 +7,27 @@
     <title>DungeonXplorer</title>
 </head>
 <body>
-    <p> degats <?php echo $this->effectiveDamage ?></p>
+    <p> monstre ? : <?php echo $mo ?></p>
+    <p> hero ?   <?php echo $he ?></p>
+    <p> sentence : <?php echo $this->sentence ?></p>
+    <p> degats monstre:  <?php echo $this->damMon ?></p>
+    <p> degats hero <?php echo $this->effectiveDamage ?></p>
     <div id="heroInfo">
-        <h4><?php echo $hero->name ?> </h4>
-        <p>Classe:  </p>
-        <p>PV: <?php echo "'".$hero->pv."'" ?> </p>
-        <p> Mana: <?php echo "'".$hero->mana."'" ?> </p>
-        <p>Force:<?php echo "'".$hero->strength."'" ?> </p>
-        <p>Initiative:<?php echo "'".$hero->initiative."'" ?> </p>
+        <h4><?php echo $this->hero->name ?> </h4>
+        <p>Classe: <?php echo $this->hero->getClass() ?>  </p>
+        <p>PV: <?php echo $this->hero->pv ?> </p>
+        <p> Mana: <?php echo $this->hero->mana ?> </p>
+        <p>Force:<?php echo $this->hero->strength ?> </p>
+        <p>Initiative:<?php echo $this->hero->initiative ?> </p>
 
     </div>
 
     <div id="MonsterInfo">
-        <h4><?php echo "'".$monster->name."'" ?> </h4>
-        <p><?php echo "'".$monster->pv."'" ?> </p>
-        <p> Mana: <?php echo "'".$monster->mana."'" ?> </p>
-        <p>Force:<?php echo "'".$monster->strength."'" ?> </p>
-        <p>Initiative:<?php echo "'".$monster->initiative."'" ?> </p>
+        <h4><?php echo $this->monster->name ?> </h4>
+        <p><?php echo $this->monster->pv ?> </p>
+        <p> Mana: <?php echo $this->monster->mana ?> </p>
+        <p>Force:<?php echo $this->monster->strength ?> </p>
+        <p>Initiative:<?php echo $this->monster->initiative ?> </p>
     </div>
 
     <form action="fight" method=post>
@@ -42,8 +46,8 @@
         <div id ="physicalChoice">
             <label for="weaponSelector">Choix de l'arme </label>
             <select name="weaponSelector" id="weaponSelector">
-                <option value= "primary"> princ.: <?php echo $hero->primary_wp->name ?> </option>
-                <option value = "secondary">secon.: <?php echo $hero->secondary_wp->name ?> </option>
+                <option value= "primary"> princ.: <?php echo $this->hero->primary_wp->name ?> </option>
+                <option value = "secondary">secon.: <?php echo $this->hero->secondary_wp->name ?> </option>
             </select>
         </div>
 
@@ -92,7 +96,7 @@
     })
 
 
-   /* let monster = <?php// echo "'".$monster->name."'" ?>;
+   /* let monster = <?php// echo $monster->name ?>;
    let test = document.getElementById("test");
    console.log(monster);*/
 
