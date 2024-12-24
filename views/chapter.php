@@ -18,7 +18,7 @@
             foreach ($this->choices as $choice){
 
                 $choicesList = "";
-                $choicesList .= "<li><a href='../nextchapter/";
+                $choicesList .= "<li><a href='./nextchapter/";
                 $choicesList .= $choice->nextChapter;
                 $choicesList .= "'>";
                 $choicesList .= $choice->text;
