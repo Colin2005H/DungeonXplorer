@@ -16,14 +16,17 @@ class FightController {
     
 
     public function __construct(){
-        if(isset($_SESSION["hero"]) && isset($_SESSION["monster"])){
-            $this->hero = $_SESSION["hero"];
-            $this->monster = $_SESSION["monster"];
-        }else{
-            echo "monster or hero unloaded";
-            //$this->createTestFight(); //test function, uncomment to test
-            
+        if(!isset($_SESSION["hero"])){
+            echo "hero unloaded";
+            $this->createTestFight(); //test function, uncomment to test
         }
+        
+        $_SESSION["hasHeroPlayed"] = false;
+        $_SESSION["hasMonsterPlayed"] = false;
+
+        $this->hero = $_SESSION["hero"];
+        $this->monster = $_SESSION["monster"];
+        $this->hero->pv =  $_SESSION["hero"]->pv;
         $this->sentenceHero = "";
         $this->sentenceMonster = "";
         $this->sentenceInitiative = "";
@@ -31,18 +34,8 @@ class FightController {
     }
 
     public function createTestFight(){
-        require_once './base/Database.php';
-            $_SESSION["monster"] = Monster::getMonster(0);
-            $heroData = $GLOBALS["base"]->request("SELECT * FROM Hero where id= 0")[0];
-            $_SESSION["hero"] = new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], null,$heroData["xp"],$heroData["current_level"],$heroData["am_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
+            $_SESSION["hero"] = Hero::getHero(0);
             $_SESSION["hero"]->pv = 100;
-            $_SESSION["monster"]->pv = 100;
-            $this->hero =  $_SESSION["hero"];
-            $this->hero->pv =  $_SESSION["hero"]->pv;
-            $this->monster = $_SESSION["monster"];
-            $_SESSION["hasHeroPlayed"] = false;
-            $_SESSION["hasMonsterPlayed"] = false;
-            $_SESSION["hero"]->strength = 1;
     }
 
     public function resetMonster(){
@@ -143,6 +136,8 @@ class FightController {
 
 
     public function updateData(){
+
+        
         if($this->hero->pv <= 0){
             $this->sentenceEnd = "Vous êtes mort";
             unset($_SESSION["monster"]);

@@ -24,7 +24,7 @@
 
     <div id="MonsterInfo">
         <h4><?php echo $this->monster->name ?> </h4>
-        <p><?php echo $this->monster->pv ?> </p>
+        <p>PV: <?php echo $this->monster->pv ?> </p>
         <p> Mana: <?php echo $this->monster->mana ?> </p>
         <p>Force:<?php echo $this->monster->strength ?> </p>
         <p>Initiative:<?php echo $this->monster->initiative ?> </p>

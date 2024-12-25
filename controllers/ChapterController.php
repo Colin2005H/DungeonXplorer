@@ -37,15 +37,11 @@ class ChapterController
 
     //Allow to start an adventure from the start
     public function startAdventure($adventureId){
-
-        if(!isset($_SESSION['adventure']) || !isset($_SESSION['chapter'])){
+   
+        require_once './base/Database.php';
             
-            require_once './base/Database.php';
-            
-            $_SESSION['adventure'] = $adventureId;
-            $_SESSION['chapter'] = $GLOBALS['base']->request("SELECT * FROM Adventure WHERE ad_id = {$adventureId}")[0]['ad_first_chapter'];
-            
-        }
+        $_SESSION['adventure'] = $adventureId;
+        $_SESSION['chapter'] = $GLOBALS['base']->request("SELECT * FROM Adventure WHERE ad_id = {$adventureId}")[0]['ad_first_chapter'];
         
         header('Location: ../chapter');
         exit();
@@ -57,9 +53,25 @@ class ChapterController
     public function nextChapter($nextChapterId){
 
         if(isset($_SESSION['adventure']) && isset($_SESSION['chapter'])){
-
+            
             $_SESSION['chapter'] = $nextChapterId;
-            header('Location: ../chapter');
+
+            require_once './base/Database.php';
+            require_once 'session/Monster.php';
+
+            $monsterID = $GLOBALS['base']->request("SELECT * FROM Encounter WHERE chapter_id = {$_SESSION['chapter']} AND adventure_id = {$_SESSION['adventure']}")[0]['monster_id'];
+
+            if(isset($monsterID)){
+
+                $_SESSION["monster"] = Monster::getMonster($monsterID);
+                //temporary
+                $_SESSION["monster"]->pv = 100;
+
+                header('Location: ../fight');
+
+            }else{
+                header('Location: ../chapter');
+            }
             exit();
 
         }else{
