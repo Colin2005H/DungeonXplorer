@@ -7,19 +7,19 @@ class Monster
     public $pv;
     public $mana;
     public $initiative;
-    public $strenght;
+    public $strength;
     public $attack;
     public $loot_id;
     public $xp;
 
-    public function __construct($id, $name, $pv, $mana, $initiative, $strenght, $attack, $loot_id, $xp)
+    public function __construct($id, $name, $pv, $mana, $initiative, $strength, $attack, $loot_id, $xp)
     {
         $this->id = $id;
         $this->name = $name;
         $this->pv = $pv;
         $this->mana = $mana;
         $this->initiative = $initiative;
-        $this->strenght = $strenght;
+        $this->strength = $strength;
         $this->attack = $attack;
         $this->loot_id = $loot_id;
         $this->xp = $xp;
