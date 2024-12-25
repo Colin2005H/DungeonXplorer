@@ -7,10 +7,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Chapter placeholder</title>
+    <link rel="stylesheet" href="./views/styles/chapter_style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <img src="<?php echo $this->chapter->image; ?>" alt="Image de chapitre">
-    <p><?php echo $this->chapter->text; ?></p>
+    <p class="text"><?php echo $this->chapter->text; ?></p>
 
     <h2>Choisissez votre chemin:</h2>
     <ul>
