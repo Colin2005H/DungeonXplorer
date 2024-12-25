@@ -5,6 +5,7 @@ class Base{
     public $db;
 
     public function __construct(){
+
         // Récupération des variables d'environnement
         $dbHost = "mysql-etu.unicaen.fr";
         $dbName = "legoupi231_0";
