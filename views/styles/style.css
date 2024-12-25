@@ -91,7 +91,22 @@ h1{
 
 }
 
+.edito{
+    font-family: "Roboto", sans-serif;
+    color: #BFBFBF;
+    background-color: #2E2E2E;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    padding-top: 20px;
+    width: 90%;
+    border-radius: 10px;
+    padding: 20px;
+}
 
+/* SIGN IN/SIGN UP PAGE STYLE */
 
 .connection_card{
     font-family: "Roboto", sans-serif;
@@ -121,64 +136,41 @@ h1{
     appearance: none;
     background-color: #C4975E;
 }
-
-
- @-webkit-keyframes puff-in-center {
-    0% {
-      -webkit-transform: scale(2);
-              transform: scale(2);
-      -webkit-filter: blur(4px);
-              filter: blur(4px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
-      opacity: 1;
-    }
-  }
-  @keyframes puff-in-center {
-    0% {
-      -webkit-transform: scale(2);
-              transform: scale(2);
-      -webkit-filter: blur(4px);
-              filter: blur(4px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
-      opacity: 1;
-    }
-  }
   
-
-
   /*CHAPTER PAGE STYLE*/
 
   #chapter_story{
     color: #BFBFBF;
     font-family: "Roboto", sans-serif;
     text-align: center;
+    font-size: 1.2em;
   }
 
-  #chapter_image{
-    margin-left: auto;
-    margin-right: auto;
-    height: 400px;
-    width: auto;
-  }
+  #chapter_image {
+    display: block;           
+    margin-left: auto;       
+    margin-right: auto;       
+    width: 80%; 
+    max-width: 600px;              
+    border-radius: 10px;      
+}
 
-  #path_choice_title{
+.path {
+    background-color: #2E2E2E;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;          
+    justify-content: space-between; 
+}
+
+
+#path_choice_title{
     font-family: "Pirata One", system-ui;
     color: #E5E5E5;
   }
 
-  #path_choice_list{
+#path_choice_list{
     color: #BFBFBF;
     font-family: "Roboto", sans-serif;
     
@@ -187,7 +179,6 @@ h1{
 #path_choice_list li {
     color: #BFBFBF;
     font-family: "Roboto", sans-serif;
-    margin-bottom: 10px;   
     font-family: Arial, sans-serif; 
 }
 
@@ -211,19 +202,15 @@ h1{
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-width: 200px;
     padding: 10px;
     text-decoration: none;
-    margin-top: 50px;
     
 }
 
 
   #chapter_content{
-    margin-top: 30px;
-    row-gap: 20px;
+    margin: 30px;
     width: 80%;
-    height: 100%;
     margin-left: auto;
     margin-right: auto;
 }
