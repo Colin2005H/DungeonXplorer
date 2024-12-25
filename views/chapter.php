@@ -26,11 +26,12 @@
         </a>
     </header>
     <div id="chapter_content">
-    <img src="<?php echo $this->chapter->image; ?>" alt="Image de chapitre" id ="chapter_image">
+    <img src="./views/images/chapterImage/<?php echo $this->chapter->image; ?>" alt="Image de chapitre" id ="chapter_image">
     <p id="chapter_story"><?php echo $this->chapter->text; ?></p>
 
     <h2 id="path_choice_title">Choisissez votre chemin:</h2>
     <ul id="path_choice_list">
+
         <?php      
             foreach ($this->choices as $choice){
 
@@ -46,12 +47,8 @@
         ?>
     </ul>
 
-    
-
     <a id = "exit_adventure" href="../">Sortir de l'aventure</a>
     </div>     
-
-
 
 </body>
 </html>

@@ -1,0 +1,14 @@
+body{
+    background-color: #1A1A1A;
+    margin: 0;
+    padding: 0;
+}
+
+.text{
+    font-family: "Pirata One", system-ui;
+    font-size: 2em;
+    color: #E5E5E5;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 20px;
+}
