@@ -157,3 +157,73 @@ h1{
   }
   
 
+
+  /*CHAPTER PAGE STYLE*/
+
+  #chapter_story{
+    color: #BFBFBF;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+  }
+
+  #chapter_image{
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    width: auto;
+  }
+
+  #path_choice_title{
+    font-family: "Pirata One", system-ui;
+    color: #E5E5E5;
+  }
+
+  #path_choice_list{
+    color: #BFBFBF;
+    font-family: "Roboto", sans-serif;
+    
+  }
+
+#path_choice_list li {
+    color: #BFBFBF;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 10px;   
+    font-family: Arial, sans-serif; 
+}
+
+#path_choice_list a {
+    color: #BFBFBF;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;      
+}
+
+#path_choice_list a:hover {
+    color: #C4975E;       
+    text-decoration: underline;
+}
+
+#exit_adventure{
+    font-family: "Roboto", sans-serif;
+    background-color: #C4975E;
+    color: #1A1A1A;
+    border: none;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 200px;
+    padding: 10px;
+    text-decoration: none;
+    margin-top: 50px;
+    
+}
+
+
+  #chapter_content{
+    margin-top: 30px;
+    row-gap: 20px;
+    width: 80%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
