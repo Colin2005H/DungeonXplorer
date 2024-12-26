@@ -81,6 +81,10 @@ $router->addRoute('login', 'UserController@login'); // Pour afficher le formulai
 $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
 $router->addRoute('testlogin', 'UserController@testLogin'); // Try logging in
 
+//Profil
+$router->addRoute('deleteaccount', 'UserController@deleteAccount'); // Try deleting account
+
+
 //chapter navigation
 $router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
 $router->addRoute('chapter', 'ChapterController@showChapter');// Affiche le chapitre actuelle

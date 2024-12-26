@@ -25,6 +25,20 @@ class UserController {
         }
         
     }
+
+    public function deleteAccount(){
+        session_start(); 
+        require_once './base/Database.php';
+
+        if (isset($_SESSION["username"])) {
+            $username = $_SESSION["username"];
+            $GLOBALS["base"]->request("DELETE FROM User WHERE user_pseudo = '$username'");
+            echo "Compte supprimé";
+            session_destroy(); 
+        } else {
+            echo "Non connecté";
+        }
+    }
    
     
 }
