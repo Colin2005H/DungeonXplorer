@@ -1,3 +1,13 @@
+<?php
+session_start(); 
+
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
+} else {
+    $username = "Invité"; 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./views/styles/style.css" />
+    <link rel="stylesheet" href="../views/styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,14 +30,16 @@
 <body>
     <header>
         <a  href="home">
-        <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
+        <img id = "logo" src="../views/images/Logo.png" alt="Dungeon Xplorer logo"/>
         </a>
+        <h1>Bienvenue, <?php echo htmlspecialchars($username); ?> !</h1>
     </header>
-    <form action="/DungeonXplorer/deleteaccount" method="post">
-    <button type="submit">Delete Account</button>
-</form>
-
-
+    <div class="profil-action">
+        <form action="/DungeonXplorer/deleteaccount" method="post">
+            <button class= "delete-button" type="submit">Supprimer mon compte</button>
+        </form>
+        
+    </div>
 
 </body>
 
