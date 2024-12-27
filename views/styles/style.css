@@ -1,159 +1,343 @@
 body{
-    background-color: #1A1A1A;
-    margin: 0;
-    padding: 0;
-    
-    
+  background-color: #1A1A1A;
+  margin: 0;
+  padding: 0;
+  
+  
 }
 
 .home{
-    -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-    animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-    
+  -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  
 }
 
 .header{
-    background-color: #2E2E2E;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background-color: #2E2E2E;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #logo{
-    width: 100px;
-    height: 100px;
-    margin-left: 30px;
-    margin-top: 30px;
+  width: 100px;
+  height: 100px;
+  margin-left: 30px;
+  margin-top: 30px;
 }
 
 #logoHomePage{
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;   
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;   
 }
 
 .bigLogo{
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    display: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  display: flex;
 }
 
 h1{
-    font-family: "Pirata One", system-ui;
-    font-size: 3em;
-    color: #E5E5E5;
-    text-align: center;
-    margin-top: 0;
-    padding-top: 20px;
+  font-family: "Pirata One", system-ui;
+  font-size: 3em;
+  color: #E5E5E5;
+  text-align: center;
+  margin-top: 0;
+  padding-top: 20px;
 }
 
 #Introduction{
-    font-family: "Pirata One", system-ui;
-    font-size: 2em;
-    color: #BFBFBF;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    padding-top: 20px;
-    width: 90%;
+  font-family: "Pirata One", system-ui;
+  font-size: 2em;
+  color: #BFBFBF;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding-top: 20px;
+  width: 90%;
 
 }
 
 .button{
-    font-family: "Roboto", sans-serif;
-    background-color: #C4975E;
-    color: #1A1A1A;
-    border: none;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-width: 200px;
-    padding: 10px;
-    font-size: 1.5em;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  font-family: "Roboto", sans-serif;
+  background-color: #C4975E;
+  color: #1A1A1A;
+  border: none;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 200px;
+  padding: 10px;
+  font-size: 1.5em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .SignIn_SignOut{
-    font-family: "Roboto", sans-serif;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 
 }
 
+.edito{
+  font-family: "Roboto", sans-serif;
+  color: #BFBFBF;
+  background-color: #2E2E2E;
+  font-size: 1.5em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  padding-top: 20px;
+  width: 90%;
+  border-radius: 10px;
+  padding: 20px;
+}
 
+/* SIGN IN/SIGN UP PAGE STYLE */
 
 .connection_card{
-    font-family: "Roboto", sans-serif;
-    font-size: 1.5em;
-    background-color: #2E2E2E;
-    color: #BFBFBF;
-    width: 30%;
-    height: 50%;
-    padding: 30px;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5em;
+  background-color: #2E2E2E;
+  color: #BFBFBF;
+  width: 30%;
+  height: 50%;
+  padding: 30px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #form_connect{
-    padding: 20px;
-    
+  padding: 20px;
+  
 }
 
 #login{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: #C4975E;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #C4975E;
+}
+
+/*CHAPTER PAGE STYLE*/
+
+#chapter_story{
+  color: #BFBFBF;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+#chapter_image {
+  display: block;           
+  margin-left: auto;       
+  margin-right: auto;       
+  width: 80%; 
+  max-width: 600px;              
+  border-radius: 10px;      
+}
+
+.path {
+  background-color: #2E2E2E;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;          
+  justify-content: space-between; 
 }
 
 
- @-webkit-keyframes puff-in-center {
-    0% {
-      -webkit-transform: scale(2);
-              transform: scale(2);
-      -webkit-filter: blur(4px);
-              filter: blur(4px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
-      opacity: 1;
-    }
-  }
-  @keyframes puff-in-center {
-    0% {
-      -webkit-transform: scale(2);
-              transform: scale(2);
-      -webkit-filter: blur(4px);
-              filter: blur(4px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
-      opacity: 1;
-    }
-  }
-  
+#path_choice_title{
+  font-family: "Pirata One", system-ui;
+  color: #E5E5E5;
+}
 
+#path_choice_list{
+  color: #BFBFBF;
+  font-family: "Roboto", sans-serif;
+  
+}
+
+#path_choice_list li {
+  color: #BFBFBF;
+  font-family: "Roboto", sans-serif;
+  font-family: Arial, sans-serif; 
+}
+
+#path_choice_list a {
+  color: #BFBFBF;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;      
+}
+
+#path_choice_list a:hover {
+  color: #C4975E;       
+  text-decoration: underline;
+}
+
+#exit_adventure{
+  font-family: "Roboto", sans-serif;
+  background-color: #C4975E;
+  color: #1A1A1A;
+  border: none;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  
+}
+
+
+#chapter_content{
+  margin: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Fight Page Style */
+
+
+.sentences {
+  margin: 20px auto;
+  text-align: center;
+  color: #BFBFBF;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2em;
+  width: 80%;
+}
+
+.initiative-sentence,
+.hero-sentence,
+.monster-sentence {
+  margin: 10px 0;
+}
+
+
+.info-card {
+  background-color: #2E2E2E;
+  color: #BFBFBF;
+  font-family: "Roboto", sans-serif;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+.hero-name,
+.monster-name {
+  font-family: "Pirata One", system-ui;
+  font-size: 1.8em;
+  color: #E5E5E5;
+  margin-bottom: 10px;
+}
+
+.hero-class,
+.hero-pv,
+.hero-mana,
+.hero-strength,
+.hero-initiative,
+.monster-pv,
+.monster-mana,
+.monster-strength,
+.monster-initiative {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+
+.action-form {
+  background-color: #2E2E2E;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  margin: 20px auto;
+  font-family: "Roboto", sans-serif;
+  color: #BFBFBF;
+}
+
+.choice-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.action-label {
+  font-size: 1em;
+}
+
+.action-detail {
+  display: none;
+  margin-top: 10px;
+}
+
+.physical-choice,
+.magical-choice,
+.object-choice {
+  background-color: #1A1A1A;
+  border: 1px solid #C4975E;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.weapon-label {
+  font-size: 1.2em;
+}
+
+.weapon-selector {
+  background-color: #2E2E2E;
+  color: #BFBFBF;
+  border: 1px solid #C4975E;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.magic-placeholder,
+.object-placeholder {
+  font-size: 1em;
+  font-style: italic;
+}
+
+
+.submit-button {
+  font-family: "Roboto", sans-serif;
+  background-color: #C4975E;
+  color: #1A1A1A;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}
+
+.submit-button:hover {
+  background-color: #D8A35E;
+}
