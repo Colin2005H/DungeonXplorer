@@ -23,9 +23,8 @@ class FightController {
         $_SESSION["hasHeroPlayed"] = false;
         $_SESSION["hasMonsterPlayed"] = false;
 
-        $this->hero = $_SESSION["hero"];
-        $this->monster = $_SESSION["monster"];
-        $this->hero->pv =  $_SESSION["hero"]->pv;
+        $this->hero = unserialize($_SESSION["hero"]);
+        $this->monster = unserialize($_SESSION["monster"]);
         $this->sentenceHero = "";
         $this->sentenceMonster = "";
         $this->sentenceInitiative = "";
@@ -33,7 +32,7 @@ class FightController {
     }
 
     public function createTestFight(){
-            $_SESSION["hero"] = Hero::getHero(3);
+            $_SESSION["hero"] = serialize(Hero::getHero(3));
             $_SESSION['inventory'] = [];
     }
 
@@ -45,7 +44,7 @@ class FightController {
 
     public function calculateInitiative(){
         $initiativeMonster =rand(1,6) + $this->monster->initiative;
-        $initiativeHero =  rand(1,6) +$this->hero->initiative -$this->hero->armor->initiativePenalty -$this->hero->primary_wp->initiativePenalty- $this->hero->secondary_wp->initiativePenalty;
+        $initiativeHero =  rand(1,6) +$this->hero->initiative -$this->hero->getArmor()->initiativePenalty -$this->hero->getPrimary()->initiativePenalty- $this->hero->getSecondary()->initiativePenalty;
         if($initiativeHero < 0)$initiativeHero = 0;
         $this->initiativeAfterReduce = $initiativeHero;
         $this->sentenceInitiative = "Test initiative: ".$this->monster->name." --> ".$initiativeMonster." contre ". $initiativeHero." pour vous.";
@@ -70,8 +69,8 @@ class FightController {
             $_SESSION["hasMonsterPlayed"] = false;
             unset($_POST["actionChoice"]);
         }
-        $this->hero = $_SESSION["hero"];
-        $this->monster = $_SESSION["monster"];
+        $this->hero = unserialize($_SESSION["hero"]);
+        $this->monster = unserialize($_SESSION["monster"]);
         if($_SESSION["hasHeroPlayed"] == false && $_SESSION["hasMonsterPlayed"] == false){
             $characterThatMustPlay = $this->calculateInitiative();
 
@@ -97,12 +96,12 @@ class FightController {
             if($_POST["actionChoice"] == "physical" ){ //remove if just physical attacks are implemented
                 $damage = rand(1,6) + $this->hero->strength;
                 if($this->hero->getClass() == "VOLEUR"){
-                    $damage += $this->hero->primary_wp->bonusStrength + $this->hero->secondary_wp->bonusStrength;
+                    $damage += $this->hero->getPrimary()->bonusStrength + $this->hero->getSecondary()->bonusStrength;
                 }else{
                     if($_POST["weaponSelector"] == "primary" ){
-                        $damage += $this->hero->primary_wp->bonusStrength;
+                        $damage += $this->hero->getPrimary()->bonusStrength;
                     }else{
-                        $damage += $this->hero->secondary_wp->bonusStrength;
+                        $damage += $this->hero->getSecondary()->bonusStrength;
                     }
                 }
                 $defense = rand(1,6) + (int)($this->monster->strength/2);
@@ -121,9 +120,9 @@ class FightController {
     public function monsterTurn(){
         $damages = rand(1,6) + $this->monster->strength;
         if($this->hero->getClass() == "VOLEUR"){
-            $defense = rand(1,6) + (int)($this->hero->initiative/2) + $this->hero->armor->amPoint;
+            $defense = rand(1,6) + (int)($this->hero->initiative/2) + $this->hero->getArmor()->amPoint;
         }else{
-            $defense = rand(1,6) + (int)($this->hero->strength/2) + $this->hero->armor->amPoint;
+            $defense = rand(1,6) + (int)($this->hero->strength/2) + $this->hero->getArmor()->amPoint;
         }
         $this->hero->pv -= max(0, $damages - $defense );
         if( $this->hero->pv < 0) $this->hero->pv = 0;
@@ -160,8 +159,8 @@ class FightController {
            
         }
         else{
-            $_SESSION["hero"] = $this->hero;
-            $_SESSION["monster"] = $this->monster;
+            $_SESSION["hero"] = serialize($this->hero);
+            $_SESSION["monster"] = serialize($this->monster);
             $mo = $_SESSION["hasMonsterPlayed"];
             $he = $_SESSION["hasHeroPlayed"];
         }

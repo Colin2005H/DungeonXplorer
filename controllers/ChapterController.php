@@ -61,7 +61,7 @@ class ChapterController
 
             if(isset($monsterID)){
 
-                $_SESSION["monster"] = Monster::getMonster($monsterID);
+                $_SESSION["monster"] = serialize(Monster::getMonster($monsterID));
 
                 header('Location: ../fight');
 
@@ -86,8 +86,11 @@ class ChapterController
         
         
         require_once 'views/404.php';
+        echo "<pre>";
+        echo var_dump($_SESSION)."<pre>";
 
         if(isset($_SESSION['hero']) && isset($_SESSION['inventory'])){
+            echo 'info saving';
             Session::saveData();
             unset($_SESSION['adventure']);
             unset($_SESSION['chapter']);

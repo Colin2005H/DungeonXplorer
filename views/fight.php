@@ -60,8 +60,8 @@
     <div id="physicalChoice" class="action-detail physical-choice">
         <label for="weaponSelector" class="weapon-label">Choix de l'arme</label>
         <select name="weaponSelector" id="weaponSelector" class="weapon-selector">
-            <option value="primary">princ.: <?php echo $this->hero->primary_wp->name ?></option>
-            <option value="secondary">secon.: <?php echo $this->hero->secondary_wp->name ?></option>
+            <option value="primary">princ.: <?php echo $this->hero->getPrimary()->name ?></option>
+            <option value="secondary">secon.: <?php echo $this->hero->getSecondary()->name ?></option>
         </select>
     </div>
 

@@ -93,7 +93,7 @@ $router->addRoute('register', 'SignController@register');
 //chapter
 $router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
 $router->addRoute('nextchapter/{id}', 'ChapterController@nextChapter');// Pour passer au chapitre suivant choisi
-$router->addRoute('chapter/save', 'ChapterController@save');//Save and exit current adventure
+$router->addRoute('save', 'ChapterController@save');//Save and exit current adventure
 
 //fights
 $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat

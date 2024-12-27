@@ -1,10 +1,8 @@
 <?php
-
 session_start();
-
-
 require_once 'session/Inventory.php';
 require_once 'session/Hero.php';
+require_once 'base/Database.php';
 
 
 #    $_SESSION DESCRIPTION
@@ -38,32 +36,36 @@ class Session{
 
     #To save current adventure/hero progresse in the database
     static function saveData(){
-        require_once '../base/Database.php';
+        
         $base = $GLOBALS["base"];
 
+        $hero = unserialize($_SESSION["hero"]);
 
         #update last chapter
-        $base->request("UPDATE Quest SET chapter_id = {$_SESSION["chapter"]} WHERE hero_id = {$_SESSION["hero"]->id}");
+        $base->request("UPDATE Quest SET chapter_id = {$_SESSION["chapter"]} WHERE hero_id = {$hero->id}");
     
-
+        
         #update last hero state
-        $base->request("UPDATE Hero SET pv = {$_SESSION["hero"]->pv}, mana = {$_SESSION["hero"]->mana}, strength = {$_SESSION["hero"]->strength}, initiative = {$_SESSION["hero"]->initiative}, shield = {$_SESSION["hero"]->shield}, ar_id = {$_SESSION["hero"]->armor->id}, primary_wp_id = {$_SESSION["hero"]->primary_wp->id}, secondary_wp_id = {$_SESSION["hero"]->secondary_wp->id}, xp = {$_SESSION["hero"]->xp}, current_level = {$_SESSION["hero"]->current_level} WHERE id = {$_SESSION["hero"]->id}");
+        $base->request("UPDATE Hero SET pv = {$hero->pv}, mana = {$hero->mana}, strength = {$hero->strength}, initiative = {$hero->initiative}, shield = {$hero->shield}, ar_id = {$hero->armor->id}, primary_wp_id = {$hero->primary_wp->id}, secondary_wp_id = {$hero->secondary_wp->id}, xp = {$hero->xp}, current_level = {$hero->current_level} WHERE id = {$hero->id}");
         
         //TODO store/update spell_list
 
 
         #update last inventory
-        $base->request("DELETE FROM Inventory WHERE hero_id = {$_SESSION["hero"]->id}");
-        $inventory = $_SESSION["inventory"];
+        $base->request("DELETE FROM Inventory WHERE hero_id = {$hero->id}");
+        $inventory = unserialize($_SESSION["inventory"]);
 
         foreach($inventory->items as &$item){
-            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$_SESSION["hero"]->id}, {$item->id}, {$item->quantity})");
+            $item = unserialize($item);
+            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$item->id}, {$item->quantity})");
         }
         foreach($inventory->weapons as &$weapon){
-            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$_SESSION["hero"]->id}, {$weapon->id}, {$weapon->quantity})");
+            $weapon = unserialize($weapon);
+            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$weapon->id}, {$weapon->quantity})");
         }
         foreach($inventory->armors as &$armor){
-            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$_SESSION["hero"]->id}, {$armors->id}, {$armors->quantity})");
+            $armor = unserialize($armor);
+            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$armors->id}, {$armors->quantity})");
         }
         unset($item);
         unset($weapon);
@@ -73,7 +75,6 @@ class Session{
 
     #To load data from the database for the adventure/hero choosen
     static function loadData($heroID){
-        require_once '../base/Database.php';
         $base = $GLOBALS["base"];
         
         #get last chapter
@@ -84,7 +85,7 @@ class Session{
 
         #hero last state
         $heroData = $base->request("SELECT * FROM Hero JOIN Quest ON Hero.id = Quest.hero_id JOIN Chapter ON Chapter.id = Quest.chapter_id WHERE Hero.id = {$heroID} AND ad_id = {$_SESSION["adventure"]}");
-        $_SESSION["hero"] = new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], $heroData["spell_list"],$heroData["xp"],$heroData["current_level"],$heroData["armor_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
+        $_SESSION["hero"] = serialize(new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], $heroData["spell_list"],$heroData["xp"],$heroData["current_level"],$heroData["armor_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]));
         
         
         #get inventory
@@ -93,7 +94,7 @@ class Session{
         foreach($storedItems as &$storedItem){
             $newItem = Item::getItem($storedItem["item_id"]);
             $newItem->quantity = $storedItem["qte"];
-            $items[] = $newItem;
+            $items[] = serialize($newItem);
         }
         unset($storedItem);
 
@@ -102,7 +103,7 @@ class Session{
         foreach($storedWeapons as &$storedWeapon){
             $newWeapon = Weapon::getWeapon($storedWeapon["item_id"]);
             $newWeapon->quantity = $storedWeapon["qte"];
-            $weapons[] = $newWeapon;
+            $weapons[] = serialize($newWeapon);
         }
         unset($storedWeapon);
 
@@ -111,12 +112,12 @@ class Session{
         foreach($storedArmors as &$storedArmor){
             $newArmor = Armor::getArmor($storedArmor["item_id"]);
             $newArmor->quantity = $storedArmor["qte"];
-            $armors[] = $newArmor;
+            $armors[] = serialize($newArmor);
         }
         unset($storedArmor);
 
 
-        $_SESSION["inventory"] = new Inventory($items, $weapons, $armors);
+        $_SESSION["inventory"] = serialize(new Inventory($items, $weapons, $armors));
         
     }
 
