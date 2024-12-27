@@ -100,5 +100,10 @@ $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset u
 
 
 
+
+
+
+
+
 // Appel de la méthode route
 $router->route(trim($_SERVER['REQUEST_URI'], '/'));
