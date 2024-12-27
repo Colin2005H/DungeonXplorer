@@ -72,7 +72,7 @@ $aventureList = $GLOBALS["base"]->request("SELECT * FROM Adventure");
     <p class="adventure-add-text">Vous voulez ajouter une aventure ? <a >Cliquez ici</a></p>
     
     <script>
-        document.querySelector(".adventure-add-text a").addEventListener("click", function() {
+        document.querySelector(".adventure-add-text").addEventListener("click", function() {
             document.querySelector(".add-adventure-form").style.display = "block";
         });
     </script>
