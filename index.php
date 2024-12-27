@@ -105,5 +105,13 @@ $router->addRoute('disconnect', 'ProfileController@disconnect'); // Try logging 
 //adventure
 $router->addRoute('startnew/{id}', 'AdventureController@startNew');
 
+//Admin
+
+$router->addRoute('deleteUser', 'AdminController@deleteUser'); // Pour supprimer un utilisateur
+$router->addRoute('deleteAdventure', 'AdminController@deleteAdventure'); // Pour supprimer une aventure
+$router->addRoute('addAdventure', 'AdminController@addAdventure'); // Pour ajouter une aventure
+
+$router->addRoute('admin', 'AdminController@Admin'); // Pour la page d'administration
+
 // Appel de la méthode route
 $router->route(trim($_SERVER['REQUEST_URI'], '/'));
