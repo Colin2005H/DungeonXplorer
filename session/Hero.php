@@ -53,6 +53,13 @@ class Hero{
         $this->qte_item_limit = $qte_item_limit;
     }
 
+    public static function getHero($id):Hero{
+
+        require_once './base/Database.php';
+        $heroData = $GLOBALS["base"]->request("SELECT * FROM Hero where id= {$id}")[0];
+        return new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], null,$heroData["xp"],$heroData["current_level"],$heroData["am_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
+    }
+
     public function getTotalWeight():Float{
         $sum = 0;
 
@@ -66,6 +73,11 @@ class Hero{
             $sum += $this->secondary_wp->getTotalWeight();
         }
         return $sum;
+    }
+
+    public function getClass():String{
+        require_once './base/Database.php';
+        return strtoupper($GLOBALS["base"]->request("SELECT c.name FROM Class c  WHERE id = {$this->class_id}")[0]["name"]);
     }
 
 
@@ -99,5 +111,5 @@ class Hero{
         return $heroes;
     }
 
-    
+  
 }

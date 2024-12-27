@@ -71,21 +71,32 @@ class Router
 $router = new Router('DungeonXplorer');
 
 // Ajout des routes
+//root
 $router->addRoute('', 'HomeController@index'); // Pour la racine
 $router->addRoute('home', 'HomeController@index'); // Pour la racine
 
+//connection
 $router->addRoute('login', 'UserController@login'); // Pour afficher le formulaire de connexion
 $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
+
+//adventure
+$router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
+
+
+
+//      BACK-END          /!\ DON'T USE DIRECLY /!\
+
+//connection
 $router->addRoute('testlogin', 'UserController@testLogin'); // Try logging in
 
-$router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
-//TODO remove params to the route and use $_SESSION to get current chapter instead
-$router->addRoute('chapter/{id}/{id}', 'ChapterController@showChapter');// Afficher un chapitre
-//USE ONLY when above is fixed
+//chapter
+$router->addRoute('chapter', 'ChapterController@showChapter');// Affiche le chapitre actuelle
 $router->addRoute('nextchapter/{id}', 'ChapterController@nextChapter');// Pour passer au chapitre suivant choisi
+$router->addRoute('chapter/save', 'ChapterController@save');//Save and exit current adventure
 
-
-$router->addRoute('fight', 'FightController@show'); // Pour afficher un combat
+//fights
+$router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un combat
+$router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
 
 
 

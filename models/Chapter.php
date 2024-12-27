@@ -12,7 +12,7 @@ class Chapter{
     public function __construct($id, $adventureId, $text, $image, $treasureId){
 
         $this->id =$id;
-        $this->adventurreId = $adventureId;
+        $this->adventureId = $adventureId;
         $this->text = $text;
         $this->image = $image;
         $this->treasureId = $treasureId;
