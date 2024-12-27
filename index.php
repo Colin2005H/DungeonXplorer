@@ -81,7 +81,7 @@ $router->addRoute('profile', 'ProfileController@show');         // Pour afficher
 $router->addRoute('chapter', 'ChapterController@show');         // Pour afficher le chapitre actuelle
 $router->addRoute('fight', 'FightController@fightRound');       // Pour afficher le combat du chapitre actuelle
 $router->addRoute('admin', 'AdminController@Admin');            // Pour la page d'administration
-$router->addRoute('herocreation', 'HeroChoiceController@show'); // Pour la creation de hero
+$router->addRoute('herocreation', 'HeroCreationController@show'); // Pour la creation de hero
 
 
 
@@ -101,7 +101,7 @@ $router->addRoute('save', 'ChapterController@save');//Save and exit current adve
 $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
 
 //hero
-$router->addRoute('create', 'HeroChoiceController@create'); //create a new hero and start the adventure
+$router->addRoute('create', 'HeroHeroCreationController@create'); //create a new hero and start the adventure
 
 //profil
 $router->addRoute('deleteaccount', 'ProfileController@deleteAccount'); // Try deleting account
