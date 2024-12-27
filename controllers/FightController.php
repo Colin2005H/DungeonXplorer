@@ -144,7 +144,9 @@ class FightController {
            // echo  $this->sentenceEnd;// echo here
             $_SESSION["hasHeroPlayed"] = false;
             $_SESSION["hasMonsterPlayed"] = false;
-            return;
+
+            header('Location: ./chapter');
+            exit;
            
         }
         elseif($this->monster->pv <= 0){
@@ -153,7 +155,9 @@ class FightController {
             //echo $this->sentenceEnd; // echo here
             $_SESSION["hasHeroPlayed"] = false;
             $_SESSION["hasMonsterPlayed"] = false;
-            return;
+            
+            header('Location: ./chapter');
+            exit;
            
         }
         else{
