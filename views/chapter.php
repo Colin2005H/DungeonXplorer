@@ -28,26 +28,27 @@
     <div id="chapter_content">
     <img src="./views/images/chapterImage/<?php echo $this->chapter->image; ?>" alt="Image de chapitre" id ="chapter_image">
     <p id="chapter_story"><?php echo $this->chapter->text; ?></p>
+        <div class = "path">
+            <h2 id="path_choice_title">Choisissez votre chemin:</h2>
+            <ul id="path_choice_list">
 
-    <h2 id="path_choice_title">Choisissez votre chemin:</h2>
-    <ul id="path_choice_list">
+                <?php      
+                    foreach ($this->choices as $choice){
 
-        <?php      
-            foreach ($this->choices as $choice){
+                        $choicesList = "";
+                        $choicesList .= "<li><a href='./nextchapter/";
+                        $choicesList .= $choice->nextChapter;
+                        $choicesList .= "'>";
+                        $choicesList .= $choice->text;
+                        $choicesList .= "</a></li>";
+                        echo $choicesList;
 
-                $choicesList = "";
-                $choicesList .= "<li><a href='./nextchapter/";
-                $choicesList .= $choice->nextChapter;
-                $choicesList .= "'>";
-                $choicesList .= $choice->text;
-                $choicesList .= "</a></li>";
-                echo $choicesList;
+                    }
+                ?>
+            </ul>
 
-            }
-        ?>
-    </ul>
-
-    <a id = "exit_adventure" href="../">Sortir de l'aventure</a>
+            <a id = "exit_adventure" href="save">Sauvegarder et quitter</a>
+        </div>
     </div>     
 
 </body>

@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Item.php';
+
 class Weapon extends Item{
 
     public $id;
