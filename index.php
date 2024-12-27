@@ -71,7 +71,6 @@ class Router
 $router = new Router('DungeonXplorer');
 
 // Ajout des routes
-
 //root
 $router->addRoute('', 'HomeController@index'); // Pour la racine
 $router->addRoute('home', 'HomeController@index'); // Pour la racine
@@ -79,15 +78,26 @@ $router->addRoute('home', 'HomeController@index'); // Pour la racine
 //connection
 $router->addRoute('login', 'UserController@login'); // Pour afficher le formulaire de connexion
 $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
+
+//adventure
+$router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
+
+
+
+//      BACK-END          /!\ DON'T USE DIRECLY /!\
+
+//connection
 $router->addRoute('testlogin', 'UserController@testLogin'); // Try logging in
 
-//chapter navigation
-$router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
+//chapter
 $router->addRoute('chapter', 'ChapterController@showChapter');// Affiche le chapitre actuelle
 $router->addRoute('nextchapter/{id}', 'ChapterController@nextChapter');// Pour passer au chapitre suivant choisi
+$router->addRoute('chapter/save', 'ChapterController@save');//Save and exit current adventure
+
 //fights
 $router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un combat
 $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
+
 
 
 // Appel de la méthode route
