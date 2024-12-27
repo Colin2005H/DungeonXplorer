@@ -1,10 +1,12 @@
 <?php
+session_start();
+require_once './base/Database.php';
 
-require_once '../base/Database.php';
 
 class AdventureController{
 
     private $adventures;
+
 
     public function __construct(){
         $this->adventures = $GLOBALS["base"]->request("SELECT * FROM Adventure");
@@ -12,7 +14,6 @@ class AdventureController{
 
 
     public function show(){
-        
         if(isset($_SESSION["id"])){          
 
             require_once 'views/adventure_choice.php';
@@ -27,7 +28,6 @@ class AdventureController{
 
     public function startNew($adventureID){
 
-        require_once './session/sessionStorage.php';
         $_SESSION['adventure'] = $adventureID;
 
         header('Location: ./herocreation');

@@ -72,24 +72,13 @@ $router = new Router('DungeonXplorer');
 
 // Ajout des routes
 //PAGES
-//root
-$router->addRoute('', 'HomeController@index'); // Pour la racine
-$router->addRoute('home', 'HomeController@index'); // Pour la racine
-
-//connection
-$router->addRoute('login', 'UserController@login'); // Pour afficher le formulaire de connexion
-$router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
-
-
-
-
-$router->addRoute('chapter', 'ChapterController@showChapter');// Affiche le chapitre actuelle
-
-//adventure
-$router->addRoute('adventure', 'AdventureController@show');
-
-//fight
-$router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un combat
+$router->addRoute('', 'HomeController@index');                  // Pour la racine
+$router->addRoute('home', 'HomeController@index');              // Pour la racine
+$router->addRoute('signin', 'SignController@signin');           // Pour afficher le formulaire de connexion
+$router->addRoute('signup', 'SignController@signup');           // Pour afficher le formulaire d'inscription
+$router->addRoute('chapter', 'ChapterController@showChapter');  // Pour afficher le chapitre actuelle
+$router->addRoute('adventure', 'AdventureController@show');     // Pour afficher le choix des aventures
+$router->addRoute('fight', 'FightController@fightRound');       // Pour afficher le combat du chapitre actuelle
 
 
 
@@ -97,7 +86,7 @@ $router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un co
 
 
 //connection
-$router->addRoute('testlogin', 'UserController@testLogin'); // Try logging in
+$router->addRoute('testlogin', 'SignController@testSignin'); // Try Signing in
 
 //chapter
 $router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé

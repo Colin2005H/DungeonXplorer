@@ -24,7 +24,7 @@
         <p id = "Introduction">DungeonXplorer, l'univers de dark fantasy où se mêlent aventure, stratégie et immersion
 totale dans les récits interactifs.</p>
         <div class="SignIn_SignOut">
-            <a href="login" class="button">Sign in</a>
+            <a href="signin" class="button">Sign in</a>
             <a href="signup" class="button">Sign up</a>
         </div>
         <p class="edito">
