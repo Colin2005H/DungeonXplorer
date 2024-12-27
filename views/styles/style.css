@@ -361,6 +361,12 @@ h1{
 
 .action-label {
   font-size: 1em;
+  text-align: center;
+}
+
+.attack{
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .action-detail {

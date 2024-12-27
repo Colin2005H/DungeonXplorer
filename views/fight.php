@@ -47,14 +47,21 @@
 
 <form action="fight" method="post" class="action-form">
     <div id="choice" class="choice-group">
-        <input type="radio" id="physicalButton" name="actionChoice" value="physical" checked>
-        <label for="physicalButton" class="action-label">Attaque physique</label>
 
-        <input type="radio" id="magicalButton" name="actionChoice" value="magical">
-        <label for="magicalButton" class="action-label">Attaque magique</label>
-
-        <input type="radio" id="useObjectButton" name="actionChoice" value="useObject">
-        <label for="useObjectButton" class="action-label">Utiliser un objet</label>
+        <div class ="attack">
+            <label for="magicalButton" class="action-label">Attaque magique</label>
+            <input type="radio" id="magicalButton" name="actionChoice" value="magical">
+        </div>
+        
+        <div class ="attack">
+            <label for="useObjectButton" class="action-label">Utiliser un objet</label>
+            <input type="radio" id="useObjectButton" name="actionChoice" value="useObject">
+        </div>
+        
+        <div class ="attack">
+            <label for="physicalButton" class="action-label">Attaque physique</label>
+            <input type="radio" id="physicalButton" name="actionChoice" value="physical" checked>
+        </div>
     </div>
 
     
