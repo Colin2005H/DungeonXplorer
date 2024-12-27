@@ -85,9 +85,9 @@ $router->addRoute('home', 'HomeController@index'); // Pour la racine
 
 $router->addRoute('deleteUser', 'AdminController@deleteUser'); // Pour supprimer un utilisateur
 $router->addRoute('deleteAdventure', 'AdminController@deleteAdventure'); // Pour supprimer une aventure
+$router->addRoute('addAdventure', 'AdminController@addAdventure'); // Pour ajouter une aventure
 
 $router->addRoute('admin', 'AdminController@Admin'); // Pour la page d'administration
-$router->addRoute('admin/users', 'AdminController@fetchAllUsers'); // Pour afficher tous les utilisateurs
 
 // Appel de la méthode route
 $router->route(trim($_SERVER['REQUEST_URI'], '/'));

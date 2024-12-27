@@ -52,22 +52,35 @@ $aventureList = $GLOBALS["base"]->request("SELECT * FROM Adventure");
 
     <table class= "adventure-table">
         <tr class="table-header">
+            <th>Adventure ID</th>
             <th>Adventure name</th>
             <th>Action</th>
         </tr>
         <?php foreach ($aventureList as $adventure): ?>
             <tr>
+                <td><?php echo htmlspecialchars($adventure['ad_id']); ?></td>
                 <td><?php echo htmlspecialchars($adventure['ad_name']); ?></td>
                 <td>
-                    <form action="deleteAdventure" method="post" style="display:inline;">
-                        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($adventure['ad_id']); ?>">
+                    <form action="../deleteAdventure" method="post" style="display:inline;">
+                        <input type="hidden" name="ad_id" value="<?php echo htmlspecialchars($adventure['ad_id']); ?>">
                         <button class = "button-suppress" type="submit">Supprimer</button>
                     </form>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
-    <p class="adventure-add">Vous voulez ajouter une aventure ? <a href="">Cliquez ici</a></p>
+    <p class="adventure-add-text">Vous voulez ajouter une aventure ? <a >Cliquez ici</a></p>
+    
+    <script>
+        document.querySelector(".adventure-add-text a").addEventListener("click", function() {
+            document.querySelector(".add-adventure-form").style.display = "block";
+        });
+    </script>
+
+    <form class ="add-adventure-form" action="../addAdventure" method="post" style="display:none;" >
+        <input class="adventure-name" type="text" name="ad_name" placeholder="Nom de l'aventure">
+        <input class = "button-add" type="submit" value="Ajouter l'aventure">
+    </form>
 </body>
 
 </html>
