@@ -46,7 +46,7 @@ class Session{
     
         
         #update last hero state
-        $base->request("UPDATE Hero SET pv = {$hero->pv}, mana = {$hero->mana}, strength = {$hero->strength}, initiative = {$hero->initiative}, shield = {$hero->shield}, ar_id = {$hero->armor->id}, primary_wp_id = {$hero->primary_wp->id}, secondary_wp_id = {$hero->secondary_wp->id}, xp = {$hero->xp}, current_level = {$hero->current_level} WHERE id = {$hero->id}");
+        $base->request("UPDATE Hero SET pv = {$hero->pv}, mana = {$hero->mana}, strength = {$hero->strength}, initiative = {$hero->initiative}, shield = {$hero->shield}, am_id = {$hero->getArmor()->id}, primary_wp_id = {$hero->getPrimary()->id}, secondary_wp_id = {$hero->getSecondary()->id}, xp = {$hero->xp}, current_level = {$hero->current_level} WHERE id = {$hero->id}");
         
         //TODO store/update spell_list
 
@@ -55,21 +55,31 @@ class Session{
         $base->request("DELETE FROM Inventory WHERE hero_id = {$hero->id}");
         $inventory = unserialize($_SESSION["inventory"]);
 
-        foreach($inventory->items as &$item){
-            $item = unserialize($item);
-            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$item->id}, {$item->quantity})");
+        if(isset($inventory->items)){
+            foreach($inventory->items as &$item){
+                $item = unserialize($item);
+                $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$item->id}, {$item->quantity})");
+            }
+            unset($item);
         }
-        foreach($inventory->weapons as &$weapon){
-            $weapon = unserialize($weapon);
-            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$weapon->id}, {$weapon->quantity})");
+        
+        if(isset($inventory->weapons)){
+            foreach($inventory->weapons as &$weapon){
+                $weapon = unserialize($weapon);
+                $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$weapon->id}, {$weapon->quantity})");
+                
+            }
+            unset($weapon);
         }
-        foreach($inventory->armors as &$armor){
-            $armor = unserialize($armor);
-            $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$armors->id}, {$armors->quantity})");
+        
+        if(isset($inventory->armors)){
+            foreach($inventory->armors as &$armor){
+                $armor = unserialize($armor);
+                $base->request("INSERT INTO Inventory(hero_id, item_id, qte) VALUES ({$hero->id}, {$armors->id}, {$armors->quantity})");
+            }
+            unset($armor);
         }
-        unset($item);
-        unset($weapon);
-        unset($armor);
+  
     }
 
 

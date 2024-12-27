@@ -33,7 +33,7 @@ class FightController {
 
     public function createTestFight(){
             $_SESSION["hero"] = serialize(Hero::getHero(3));
-            $_SESSION['inventory'] = [];
+            $_SESSION['inventory'] = serialize([]);
     }
 
     public function resetMonster(){

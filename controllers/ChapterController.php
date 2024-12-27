@@ -27,8 +27,8 @@ class ChapterController
         }else{
             
             //User $_SESSION doesn't containe chapter or adventure inforfation
-            require_once 'views/404.php';
-            echo 'User $_SESSION does not containe chapter or adventure information';
+            header('Location: adventure');
+            exit;
 
         }
 
@@ -73,8 +73,8 @@ class ChapterController
         }else{
 
             //User $_SESSION doesn't contain chapter or adventure inforfation
-            require_once 'views/404.php';
-            echo 'User $_SESSION does not contain chapter or adventure information';
+            header('Location: ../adventure');
+            exit;
            
         }
 
@@ -83,11 +83,6 @@ class ChapterController
 
 
     public function save(){
-        
-        
-        require_once 'views/404.php';
-        echo "<pre>";
-        echo var_dump($_SESSION)."<pre>";
 
         if(isset($_SESSION['hero']) && isset($_SESSION['inventory'])){
             echo 'info saving';
@@ -96,11 +91,9 @@ class ChapterController
             unset($_SESSION['chapter']);
             unset($_SESSION['hero']);
             unset($_SESSION['inventory']);
-
-            echo 'info saved';
         }
 
-        //header('Location: adventure');
+        header('Location: adventure');
         exit;
     } 
 
