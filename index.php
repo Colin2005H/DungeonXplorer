@@ -79,6 +79,13 @@ $router->addRoute('home', 'HomeController@index'); // Pour la racine
 $router->addRoute('login', 'UserController@login'); // Pour afficher le formulaire de connexion
 $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
 
+
+//Profil
+$router->addRoute('deleteaccount', 'UserController@deleteAccount'); // Try deleting account
+$router->addRoute('logout', 'UserController@logOut'); // Try logging out
+
+
+//chapter navigation
 //adventure
 $router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
 
