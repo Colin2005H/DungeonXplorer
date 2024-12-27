@@ -156,4 +156,23 @@ h1{
     }
   }
   
+/*ADMIN PAGE STYLE */
+
+
+.user-table{
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5em;
+    background-color: #2E2E2E;
+    color: #BFBFBF;
+    width: 80%;
+    height: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
 

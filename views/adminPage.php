@@ -1,3 +1,8 @@
+<?php
+require_once 'base/Database.php';
+$userNameList = $GLOBALS["base"]->request("SELECT * FROM User");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,11 +23,31 @@
 
 <body>
     <header>
-        <a  href="home">
-        <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
+        <a href="home">
+            <img id="logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo" />
         </a>
-        <h1>Welcome to Dungeon Xplorer</h1>
+        <h1>Admin</h1>
     </header>
+
+    <table class= "user-table">
+        <tr class="table-header">
+            <th>User ID</th>
+            <th>User Pseudo</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach ($userNameList as $user): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($user['user_id']); ?></td>
+                <td><?php echo htmlspecialchars($user['user_pseudo']); ?></td>
+                <td>
+                    <form action="deleteUser" method="post" style="display:inline;">
+                        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user['user_id']); ?>">
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </body>
 
 </html>
