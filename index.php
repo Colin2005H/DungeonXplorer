@@ -83,6 +83,7 @@ $router->addRoute('testlogin', 'UserController@testLogin'); // Try logging in
 
 //Profil
 $router->addRoute('deleteaccount', 'UserController@deleteAccount'); // Try deleting account
+$router->addRoute('logout', 'UserController@logOut'); // Try logging out
 
 
 //chapter navigation

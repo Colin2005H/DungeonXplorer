@@ -38,6 +38,8 @@ if (isset($_SESSION["username"])) {
         <form action="/DungeonXplorer/deleteaccount" method="post">
             <button class= "delete-button" type="submit">Supprimer mon compte</button>
         </form>
+        <form action="/DungeonXplorer/logout" method="post">
+            <button class= "logout-button" type="submit">Déconnexion</button>
         
     </div>
 

@@ -21,6 +21,8 @@ class UserController {
         $_SESSION["username"] = $userData["user_pseudo"];
         $_SESSION["email"] = $userData["user_email"];
         $_SESSION["id"] = $userData["user_id"];
+        echo 'Connecté';
+        echo 'Redirection A FAIRE';
 
 
         }else{
@@ -42,10 +44,18 @@ class UserController {
             $GLOBALS["base"]->request("DELETE FROM Hero WHERE user_id = '$id'");
             $GLOBALS["base"]->request("DELETE FROM User WHERE user_id = '$id'");
             echo "Compte supprimé";
-            session_destroy(); 
+            session_destroy();
+            require_once 'views/homePage.php';
+
         } else {
             echo "Non connecté";
         }
+    }
+
+    public function logOut(){
+        session_start(); 
+        session_destroy();
+        require_once 'views/homePage.php';
     }
    
     
