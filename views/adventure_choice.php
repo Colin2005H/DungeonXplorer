@@ -1,10 +1,3 @@
-<?php
-
-require_once '../base/Database.php';
-    
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +10,10 @@ require_once '../base/Database.php';
 
     <h1>Choisissez une aventure</h1>
     <!--renvoie vers la page process pour le traitement -->
+
+    <a href="profile">
+        <button>Profil</button>
+    </a>
     
     <form action="" method="POST">
     <label for="ad_id">Choisissez une aventure :</label>

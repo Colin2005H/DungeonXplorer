@@ -20,12 +20,12 @@
 <body>
     <header>
         <a  href="home">
-        <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
+            <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
         </a>
         <h1>Welcome to Dungeon Xplorer</h1>
     </header>
     <div class="connection_card">
-        <form action="" method="post">
+        <form action="register" method="post">
             <div>
                 <label for="email">E-mail:</label>
                 <input type="text" id="email" name="email" required>

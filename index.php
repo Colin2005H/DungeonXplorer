@@ -76,8 +76,9 @@ $router->addRoute('', 'HomeController@index');                  // Pour la racin
 $router->addRoute('home', 'HomeController@index');              // Pour la racine
 $router->addRoute('signin', 'SignController@signin');           // Pour afficher le formulaire de connexion
 $router->addRoute('signup', 'SignController@signup');           // Pour afficher le formulaire d'inscription
-$router->addRoute('chapter', 'ChapterController@showChapter');  // Pour afficher le chapitre actuelle
 $router->addRoute('adventure', 'AdventureController@show');     // Pour afficher le choix des aventures
+$router->addRoute('profile', 'ProfileController@show');
+$router->addRoute('chapter', 'ChapterController@showChapter');  // Pour afficher le chapitre actuelle
 $router->addRoute('fight', 'FightController@fightRound');       // Pour afficher le combat du chapitre actuelle
 
 
@@ -87,6 +88,7 @@ $router->addRoute('fight', 'FightController@fightRound');       // Pour afficher
 
 //connection
 $router->addRoute('testlogin', 'SignController@testSignin'); // Try Signing in
+$router->addRoute('register', 'SignController@register');
 
 //chapter
 $router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
@@ -97,8 +99,8 @@ $router->addRoute('chapter/save', 'ChapterController@save');//Save and exit curr
 $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
 
 //profil
-$router->addRoute('deleteaccount', 'UserController@deleteAccount'); // Try deleting account
-$router->addRoute('logout', 'UserController@logOut'); // Try logging out
+$router->addRoute('deleteaccount', 'ProfileController@deleteAccount'); // Try deleting account
+$router->addRoute('disconnect', 'ProfileController@disconnect'); // Try logging out
 
 //adventure
 $router->addRoute('startnew/{id}', 'AdventureController@startNew');
