@@ -1,6 +1,7 @@
 <?php
-require_once 'base/Database.php';
+require_once '../base/Database.php';
 $userNameList = $GLOBALS["base"]->request("SELECT * FROM User");
+$aventureList = $GLOBALS["base"]->request("SELECT * FROM Adventure");
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ $userNameList = $GLOBALS["base"]->request("SELECT * FROM User");
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./views/styles/style.css" />
+    <link rel="stylesheet" href="../views/styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -24,7 +25,7 @@ $userNameList = $GLOBALS["base"]->request("SELECT * FROM User");
 <body>
     <header>
         <a href="home">
-            <img id="logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo" />
+            <img id="logo" src="../views/images/Logo.png" alt="Dungeon Xplorer logo" />
         </a>
         <h1>Admin</h1>
     </header>
@@ -42,12 +43,31 @@ $userNameList = $GLOBALS["base"]->request("SELECT * FROM User");
                 <td>
                     <form action="deleteUser" method="post" style="display:inline;">
                         <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user['user_id']); ?>">
-                        <button type="submit">Supprimer</button>
+                        <button class = "button-suppress" type="submit">Supprimer</button>
                     </form>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <table class= "adventure-table">
+        <tr class="table-header">
+            <th>Adventure name</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach ($aventureList as $adventure): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($adventure['ad_name']); ?></td>
+                <td>
+                    <form action="deleteAdventure" method="post" style="display:inline;">
+                        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($adventure['ad_id']); ?>">
+                        <button class = "button-suppress" type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+    <p class="adventure-add">Vous voulez ajouter une aventure ? <a href="">Cliquez ici</a></p>
 </body>
 
 </html>
