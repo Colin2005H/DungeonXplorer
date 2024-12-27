@@ -71,6 +71,7 @@ class Router
 $router = new Router('DungeonXplorer');
 
 // Ajout des routes
+//PAGES
 //root
 $router->addRoute('', 'HomeController@index'); // Pour la racine
 $router->addRoute('home', 'HomeController@index'); // Pour la racine
@@ -80,37 +81,38 @@ $router->addRoute('login', 'UserController@login'); // Pour afficher le formulai
 $router->addRoute('signup', 'UserController@signup'); // Pour afficher le formulaire d'inscription
 
 
-//Profil
-$router->addRoute('deleteaccount', 'UserController@deleteAccount'); // Try deleting account
-$router->addRoute('logout', 'UserController@logOut'); // Try logging out
 
 
-//chapter navigation
+$router->addRoute('chapter', 'ChapterController@showChapter');// Affiche le chapitre actuelle
+
 //adventure
-$router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
+$router->addRoute('adventure', 'AdventureController@show');
+
+//fight
+$router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un combat
 
 
 
-//      BACK-END          /!\ DON'T USE DIRECLY /!\
+//BACK-END          /!\ DON'T USE DIRECLY /!\
+
 
 //connection
 $router->addRoute('testlogin', 'UserController@testLogin'); // Try logging in
 
 //chapter
-$router->addRoute('chapter', 'ChapterController@showChapter');// Affiche le chapitre actuelle
+$router->addRoute('chapter/{id}', 'ChapterController@startAdventure'); // Pour afficher le premier chapitre d'une aventure et la commencé
 $router->addRoute('nextchapter/{id}', 'ChapterController@nextChapter');// Pour passer au chapitre suivant choisi
 $router->addRoute('chapter/save', 'ChapterController@save');//Save and exit current adventure
 
 //fights
-$router->addRoute('fight', 'FightController@fightRound'); // Pour afficher un combat
 $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
 
+//profil
+$router->addRoute('deleteaccount', 'UserController@deleteAccount'); // Try deleting account
+$router->addRoute('logout', 'UserController@logOut'); // Try logging out
 
-
-
-
-
-
+//adventure
+$router->addRoute('startnew/{id}', 'AdventureController@startNew');
 
 // Appel de la méthode route
 $router->route(trim($_SERVER['REQUEST_URI'], '/'));

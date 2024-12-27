@@ -1,6 +1,34 @@
 <?php
 
+require_once 'session/sessionStorage.php';
+
 class HeroChoiceController {
+
+    private $adventure;
+    private $userID;
+
+    public function __construct(){
+            if(isset($_SESSION['adventure']) && isset($_SESSION['id'])){
+                $this->adventure = $_SESSION['adventure'];
+                $this->userID = $_SESSION['id'];
+            }
+    }
+
+
+    public function show(){
+        if(isset($this->adventure)){
+
+            require_once './views/adventure_choice.php';
+            return;
+            
+        }else{
+
+            header('Location: ./');
+            exit;
+        }
+        
+    }
+
     public function processHeroChoice() {
         require_once '../session/Hero.php';
 

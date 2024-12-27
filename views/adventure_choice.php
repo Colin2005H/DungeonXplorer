@@ -24,15 +24,13 @@ require_once '../base/Database.php';
         <option value="">Choisissez</option>
         
         <?php
-        $adventures = $GLOBALS["base"]->request("SELECT * FROM Adventure");
-
-        if (empty($adventures)) {
-            echo "<option value=''>Aucune aventure trouvée</option>";
-        } else {
-            foreach ($adventures as $adventure) {
-                echo "<option value='{$adventure->ad_id}'>{$adventure->ad_name}</option>";
+            if (empty($this->adventures)) {
+                echo "<option value=''>Aucune aventure trouvée</option>";
+            } else {
+                foreach ($this->adventures as $adventure) {
+                    echo "<option value='{$adventure->ad_id}'>{$adventure->ad_name}</option>";
+                }
             }
-        }
         ?>
         
     </select>

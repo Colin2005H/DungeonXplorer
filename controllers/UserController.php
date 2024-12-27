@@ -16,13 +16,14 @@ class UserController {
         if($logSuccess){
             $userData = $GLOBALS["base"]->request("SELECT * FROM User WHERE user_pseudo = '{$_POST["username"]}'")[0];
 
-        // Set session variables
-        session_start();
-        $_SESSION["username"] = $userData["user_pseudo"];
-        $_SESSION["email"] = $userData["user_email"];
-        $_SESSION["id"] = $userData["user_id"];
-        echo 'Connecté';
-        echo 'Redirection A FAIRE';
+            // Set session variables
+            session_start();
+            $_SESSION["username"] = $userData["user_pseudo"];
+            $_SESSION["email"] = $userData["user_email"];
+            $_SESSION["id"] = $userData["user_id"];
+            
+            header('Location: ./adventure');
+            exit;
 
 
         }else{
@@ -37,12 +38,12 @@ class UserController {
                 //redirige vers la page de creation de hero
                 require_once 'views/hero_choice.php';
             }
-        }
-        else{
+        
+        
 */
             #connection failed
             echo "connection failed";
-            //require_once 'views/signin.php';
+            require_once 'views/signin.php';
             
 
         }
@@ -69,7 +70,9 @@ class UserController {
     public function logOut(){
         session_start(); 
         session_destroy();
-        require_once 'views/homePage.php';
+
+        header('Location: ./');
+        exit;
     }
    
 }
