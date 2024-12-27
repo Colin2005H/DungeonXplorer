@@ -57,8 +57,10 @@
         <label for="useObjectButton" class="action-label">Utiliser un objet</label>
     </div>
 
+    
+
     <div id="physicalChoice" class="action-detail physical-choice">
-        <label for="weaponSelector" class="weapon-label">Choix de l'arme</label>
+        <label for="weaponSelector" class="weapon-label">Choix de l'arme : </label>
         <select name="weaponSelector" id="weaponSelector" class="weapon-selector">
             <option value="primary">princ.: <?php echo $this->hero->getPrimary()->name ?></option>
             <option value="secondary">secon.: <?php echo $this->hero->getSecondary()->name ?></option>
@@ -75,5 +77,24 @@
 
     <button id="submit" class="submit-button" type="submit">Valider l'action</button>
 </form>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const physicalButton = document.getElementById('physicalButton');
+            const physicalChoice = document.getElementById('physicalChoice');
+            function togglePhysicalChoiceMenu() {
+                if (physicalButton.checked) {
+                    physicalChoice.style.display = 'block';
+                } else {
+                    physicalChoice.style.display = 'none'; }
+            }
+
+            togglePhysicalChoiceMenu();
+
+            document.querySelectorAll('input[name="actionChoice"]').forEach(function(radio) {
+                radio.addEventListener('change', togglePhysicalChoiceMenu);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -372,7 +372,6 @@ h1{
 .magical-choice,
 .object-choice {
   background-color: #1A1A1A;
-  border: 1px solid #C4975E;
   border-radius: 10px;
   padding: 10px;
 }
@@ -384,7 +383,6 @@ h1{
 .weapon-selector {
   background-color: #2E2E2E;
   color: #BFBFBF;
-  border: 1px solid #C4975E;
   border-radius: 5px;
   padding: 5px;
 }
