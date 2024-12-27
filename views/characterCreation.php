@@ -35,6 +35,6 @@
             </select>
             <input class="form-submit" type="submit" value="Valider">
         </form>
-        <p class="info-hero"><?php $this->printClassesTemplate($this->allClass); ?></p>
+        <?php $this->printClassesTemplate($this->allClass); ?>
 </body>
 </html>
