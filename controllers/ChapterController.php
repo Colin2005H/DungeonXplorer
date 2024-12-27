@@ -48,8 +48,8 @@ class ChapterController
         return;
     }
 
-    //use when showChapter as no longer params
-    //change session chapter to one of the possible next one
+
+    //go to the next chapter/fight
     public function nextChapter($nextChapterId){
 
         if(isset($_SESSION['adventure']) && isset($_SESSION['chapter'])){
@@ -64,8 +64,6 @@ class ChapterController
             if(isset($monsterID)){
 
                 $_SESSION["monster"] = Monster::getMonster($monsterID);
-                //temporary
-                $_SESSION["monster"]->pv = 100;
 
                 header('Location: ../fight');
 
@@ -76,14 +74,34 @@ class ChapterController
 
         }else{
 
-            //User $_SESSION doesn't containe chapter or adventure inforfation
+            //User $_SESSION doesn't contain chapter or adventure inforfation
             require_once './views/404.php';
-            echo 'User $_SESSION does not containe chapter or adventure information';
+            echo 'User $_SESSION does not contain chapter or adventure information';
            
         }
 
         return;
     }
+
+
+    public function save(){
+        
+        
+        require_once './views/404.php';
+
+        if(isset($_SESSION['hero']) && isset($_SESSION['inventory'])){
+            Session::saveData();
+            unset($_SESSION['adventure']);
+            unset($_SESSION['chapter']);
+            unset($_SESSION['hero']);
+            unset($_SESSION['inventory']);
+
+            echo 'info saved';
+        }
+
+        //header('Location: ../');
+        exit;
+    } 
 
 
 

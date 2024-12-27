@@ -47,7 +47,7 @@
                 ?>
             </ul>
 
-            <a id = "exit_adventure" href="../">Sortir de l'aventure</a>
+            <a id = "exit_adventure" href="save">Sauvegarder et quitter</a>
         </div>
     </div>     
 
