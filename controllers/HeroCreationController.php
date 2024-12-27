@@ -55,19 +55,21 @@ class HeroCreationController {
 
     public function create(){
 
-        if (!isset($_POST['name']) || !isset($_POST['classe'])) {
+        if (!isset($_POST['nom']) || !isset($_POST['classe'])) {
             
             header('Location: herocreation');
             exit;
 
         }else {
-            $name = trim($_POST['name']);
+            $name = trim($_POST['nom']);
             $classid = trim($_POST['classe']);
             $biographie = "NULL";
-
             if(isset($_POST['biographie'])){
-                $biographie = trim($_POST['email']);
+                $biographie = trim($_POST['biographie']);
             }
+            var_dump($this->allClass);
+            $class = $this->allClass[$classid];
+
             $GLOBALS["base"]->request("INSERT INTO Hero (name,class_id,biographie,pv,mana,strenght,initiative,shield,xp,current_level,user_id,am_id,primary_wp_id,secondary_wp_id,wheight_limit,qte_item_limit) VALUES ($name,$classid,$biographie,{$class['base_pv']},{$class['base_mana']},{$class['base_strenght']},{$class['base_initiative']},{$class['base_shield']},0,1,{$_SESSION[user_id]}  ,{$class['base_armor']},{$class['base_primary_wp']},{$class['base_secondary_wp']},{$class['base_wheight_limit']},{$class['base_qte_item_limit']})");
             
             $hero = Hero::getHero($GLOBALS["base"]->request("SELECT * FROM Hero WHERE user_id = {$_SESSION['id']} AND name = {$name}")[0]['id']);

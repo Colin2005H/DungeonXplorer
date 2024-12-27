@@ -15,7 +15,7 @@
         <button>Profil</button>
     </a>
     
-    <form action="" method="POST">
+    <form action="goThrow" method="POST">
     <label for="ad_id">Choisissez une aventure :</label>
     <select name="ad_id" id="ad_id" required>
         <option value="">Choisissez</option>
@@ -25,7 +25,7 @@
                 echo "<option value=''>Aucune aventure trouvée</option>";
             } else {
                 foreach ($this->adventures as $adventure) {
-                    echo "<option value='{$adventure->ad_id}'>{$adventure->ad_name}</option>";
+                    echo "<option value='{$adventure['ad_id']}'>{$adventure['ad_name']}</option>";
                 }
             }
         ?>

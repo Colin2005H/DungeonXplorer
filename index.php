@@ -101,14 +101,14 @@ $router->addRoute('save', 'ChapterController@save');//Save and exit current adve
 $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
 
 //hero
-$router->addRoute('create', 'HeroHeroCreationController@create'); //create a new hero and start the adventure
+$router->addRoute('create', 'HeroCreationController@create'); //create a new hero and start the adventure
 
 //profil
 $router->addRoute('deleteaccount', 'ProfileController@deleteAccount'); // Try deleting account
 $router->addRoute('disconnect', 'ProfileController@disconnect'); // Try logging out
 
 //adventure
-$router->addRoute('startnew/{id}', 'AdventureController@startNew');
+$router->addRoute('goThrow', 'AdventureController@goThrow');
 
 //Admin
 $router->addRoute('deleteUser', 'AdminController@deleteUser'); // Pour supprimer un utilisateur

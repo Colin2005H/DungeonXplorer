@@ -20,7 +20,7 @@
             <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
         </a>
 </header>
-<form class="create-hero-form" action="./create" method="post">
+<form class="create-hero-form" action="create" method="post">
             <label class="form-label" for="nom">Nom : </label>
             <input class="form-input" type="text" name="nom" id="inputNomHero">
             <label class="form-label" for="biographie">Biographie : </label>
