@@ -17,7 +17,6 @@ class FightController {
 
     public function __construct(){
         if(!isset($_SESSION["hero"])){
-            echo "hero unloaded";
             $this->createTestFight(); //test function, uncomment to test
         }
         
@@ -34,8 +33,8 @@ class FightController {
     }
 
     public function createTestFight(){
-            $_SESSION["hero"] = Hero::getHero(0);
-            $_SESSION["hero"]->pv = 100;
+            $_SESSION["hero"] = Hero::getHero(3);
+            $_SESSION['inventory'] = [];
     }
 
     public function resetMonster(){

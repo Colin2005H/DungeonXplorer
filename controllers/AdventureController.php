@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './base/Database.php';
+require_once 'base/Database.php';
 
 
 class AdventureController{
@@ -21,7 +21,7 @@ class AdventureController{
 
         }else{
 
-            header('Location: ./');
+            header('Location: home');
             exit;
         }
     }
@@ -30,7 +30,7 @@ class AdventureController{
 
         $_SESSION['adventure'] = $adventureID;
 
-        header('Location: ./herocreation');
+        header('Location: herocreation');
         exit;
     }
 

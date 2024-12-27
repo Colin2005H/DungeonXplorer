@@ -20,11 +20,6 @@
     <title>Dunjeon Xplorer</title>
 </head>
 <body>
-<header>
-        <a  href="home">
-        <img id = "logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
-        </a>
-    </header>
     <div id="chapter_content">
     <img src="./views/images/chapterImage/<?php echo $this->chapter->image; ?>" alt="Image de chapitre" id ="chapter_image">
     <p id="chapter_story"><?php echo $this->chapter->text; ?></p>

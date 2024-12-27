@@ -77,8 +77,8 @@ $router->addRoute('home', 'HomeController@index');              // Pour la racin
 $router->addRoute('signin', 'SignController@signin');           // Pour afficher le formulaire de connexion
 $router->addRoute('signup', 'SignController@signup');           // Pour afficher le formulaire d'inscription
 $router->addRoute('adventure', 'AdventureController@show');     // Pour afficher le choix des aventures
-$router->addRoute('profile', 'ProfileController@show');
-$router->addRoute('chapter', 'ChapterController@showChapter');  // Pour afficher le chapitre actuelle
+$router->addRoute('profile', 'ProfileController@show');         // Pour afficher le profil
+$router->addRoute('chapter', 'ChapterController@show');  // Pour afficher le chapitre actuelle
 $router->addRoute('fight', 'FightController@fightRound');       // Pour afficher le combat du chapitre actuelle
 
 

@@ -1,7 +1,8 @@
 <?php
-
-require_once './models/Chapter.php';
-require_once './models/Choice.php';
+require_once 'session/sessionStorage.php';
+require_once 'session/Monster.php';
+require_once 'models/Chapter.php';
+require_once 'models/Choice.php';
 
 class ChapterController
 {
@@ -9,24 +10,24 @@ class ChapterController
     public $choices = [];
 
     public function __construct(){
-        require_once 'session/sessionStorage.php';
+        
     }
 
 
     //display the current chapter
-    public function showChapter(){
+    public function show(){
     
         if(isset($_SESSION['adventure']) && isset($_SESSION['chapter'])){
 
             $this->chapter = Chapter::getChapter($_SESSION['adventure'], $_SESSION['chapter']);
             $this->choices = Choice::getAllChoices($this->chapter);
 
-            require_once './views/chapter.php';
+            require_once 'views/chapter.php';
 
         }else{
             
             //User $_SESSION doesn't containe chapter or adventure inforfation
-            require_once './views/404.php';
+            require_once 'views/404.php';
             echo 'User $_SESSION does not containe chapter or adventure information';
 
         }
@@ -38,7 +39,7 @@ class ChapterController
     //Allow to start an adventure from the start
     public function startAdventure($adventureId){
    
-        require_once './base/Database.php';
+        
             
         $_SESSION['adventure'] = $adventureId;
         $_SESSION['chapter'] = $GLOBALS['base']->request("SELECT * FROM Adventure WHERE ad_id = {$adventureId}")[0]['ad_first_chapter'];
@@ -56,9 +57,6 @@ class ChapterController
             
             $_SESSION['chapter'] = $nextChapterId;
 
-            require_once './base/Database.php';
-            require_once 'session/Monster.php';
-
             $monsterID = $GLOBALS['base']->request("SELECT * FROM Encounter WHERE chapter_id = {$_SESSION['chapter']} AND adventure_id = {$_SESSION['adventure']}")[0]['monster_id'];
 
             if(isset($monsterID)){
@@ -75,7 +73,7 @@ class ChapterController
         }else{
 
             //User $_SESSION doesn't contain chapter or adventure inforfation
-            require_once './views/404.php';
+            require_once 'views/404.php';
             echo 'User $_SESSION does not contain chapter or adventure information';
            
         }
@@ -87,7 +85,7 @@ class ChapterController
     public function save(){
         
         
-        require_once './views/404.php';
+        require_once 'views/404.php';
 
         if(isset($_SESSION['hero']) && isset($_SESSION['inventory'])){
             Session::saveData();
@@ -99,7 +97,7 @@ class ChapterController
             echo 'info saved';
         }
 
-        //header('Location: ../');
+        //header('Location: adventure');
         exit;
     } 
 

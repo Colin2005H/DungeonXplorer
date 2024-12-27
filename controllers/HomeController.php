@@ -6,7 +6,7 @@ class HomeController {
 
         if(isset($_SESSION['id'])){
             
-            header('Location: ./adventure');
+            header('Location: adventure');
             exit;
 
 

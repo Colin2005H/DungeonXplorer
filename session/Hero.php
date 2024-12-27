@@ -2,7 +2,7 @@
 
 require_once 'Armor.php';
 require_once 'Weapon.php';
-require_once '../base/Database.php';
+require_once 'base/Database.php';
 
 class Hero{
 
@@ -34,7 +34,7 @@ class Hero{
     
     
     
-    public function __construct($id, $name, $class_id, $pv, $mana, $strength, $initiative, $shield, $xp, $current_level, $primary_wp_id, $secondary_wp_id, $weight_limit, $qte_item_limit){
+    public function __construct($id, $name, $class_id, $pv, $mana, $strength, $initiative, $shield, $xp, $current_level, $armor_id, $primary_wp_id, $secondary_wp_id, $weight_limit, $qte_item_limit){
         $this->id = $id;
         $this->name = $name;
         $this->class_id = $class_id;
@@ -46,7 +46,7 @@ class Hero{
         //$this->spell_list = $spell_list;
         $this->xp = $xp;
         $this->current_level = $current_level;
-        //$this->armor = Armor::getArmor($armor_id);
+        $this->armor = Armor::getArmor($armor_id);
         $this->primary_wp = Weapon::getWeapon($primary_wp_id);
         $this->secondary_wp = Weapon::getWeapon($secondary_wp_id);
         $this->weight_limit = $weight_limit;
@@ -55,9 +55,8 @@ class Hero{
 
     public static function getHero($id):Hero{
 
-        require_once './base/Database.php';
         $heroData = $GLOBALS["base"]->request("SELECT * FROM Hero where id= {$id}")[0];
-        return new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], null,$heroData["xp"],$heroData["current_level"],$heroData["am_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
+        return new Hero($heroData["id"],$heroData["name"],$heroData["class_id"],$heroData["pv"],$heroData["mana"],$heroData["strength"],$heroData["initiative"],$heroData["shield"], $heroData["xp"],$heroData["current_level"],$heroData["am_id"],$heroData["primary_wp_id"],$heroData["secondary_wp_id"],$heroData["weight_limit"],$heroData["qte_item_limit"]);
     }
 
     public function getTotalWeight():Float{
@@ -76,7 +75,6 @@ class Hero{
     }
 
     public function getClass():String{
-        require_once './base/Database.php';
         return strtoupper($GLOBALS["base"]->request("SELECT c.name FROM Class c  WHERE id = {$this->class_id}")[0]["name"]);
     }
 
