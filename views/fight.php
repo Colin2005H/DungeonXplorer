@@ -16,11 +16,6 @@
     <title>Dunjeon Xplorer</title>
 </head>
 <body>
-<header>
-    <a href="home" class="logo-link">
-        <img id="logo" class="logo" src="./views/images/Logo.png" alt="Dungeon Xplorer logo"/>
-    </a>
-</header>
 
 <div class="sentences">
     <p class="initiative-sentence"><?php echo $this->sentenceInitiative ?> </p>

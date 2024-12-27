@@ -78,8 +78,10 @@ $router->addRoute('signin', 'SignController@signin');           // Pour afficher
 $router->addRoute('signup', 'SignController@signup');           // Pour afficher le formulaire d'inscription
 $router->addRoute('adventure', 'AdventureController@show');     // Pour afficher le choix des aventures
 $router->addRoute('profile', 'ProfileController@show');         // Pour afficher le profil
-$router->addRoute('chapter', 'ChapterController@show');  // Pour afficher le chapitre actuelle
+$router->addRoute('chapter', 'ChapterController@show');         // Pour afficher le chapitre actuelle
 $router->addRoute('fight', 'FightController@fightRound');       // Pour afficher le combat du chapitre actuelle
+$router->addRoute('admin', 'AdminController@Admin');            // Pour la page d'administration
+$router->addRoute('herocreation', 'HeroChoiceController@show'); // Pour la creation de hero
 
 
 
@@ -98,6 +100,9 @@ $router->addRoute('save', 'ChapterController@save');//Save and exit current adve
 //fights
 $router->addRoute('resetfight', 'FightController@resetMonster'); // Pour reset un combat
 
+//hero
+$router->addRoute('create', 'HeroChoiceController@create'); //create a new hero and start the adventure
+
 //profil
 $router->addRoute('deleteaccount', 'ProfileController@deleteAccount'); // Try deleting account
 $router->addRoute('disconnect', 'ProfileController@disconnect'); // Try logging out
@@ -106,12 +111,11 @@ $router->addRoute('disconnect', 'ProfileController@disconnect'); // Try logging 
 $router->addRoute('startnew/{id}', 'AdventureController@startNew');
 
 //Admin
-
 $router->addRoute('deleteUser', 'AdminController@deleteUser'); // Pour supprimer un utilisateur
 $router->addRoute('deleteAdventure', 'AdminController@deleteAdventure'); // Pour supprimer une aventure
 $router->addRoute('addAdventure', 'AdminController@addAdventure'); // Pour ajouter une aventure
 
-$router->addRoute('admin', 'AdminController@Admin'); // Pour la page d'administration
+
 
 // Appel de la méthode route
 $router->route(trim($_SERVER['REQUEST_URI'], '/'));

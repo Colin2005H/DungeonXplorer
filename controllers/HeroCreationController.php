@@ -17,4 +17,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Vous pouvez aussi enregistrer ces données dans une base de données
     }
 }
-?>
